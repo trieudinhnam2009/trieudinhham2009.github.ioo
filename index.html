@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ôn Thi Vào 10 — Học thông minh, thi hiệu quả</title>
+<title>Ôn Thi THPT Quốc Gia — Học thông minh, thi hiệu quả</title>
 <style>
   :root {
     --primary:#4f46e5;--primary-dark:#4338ca;--primary-light:#eef2ff;
@@ -12,8 +12,7 @@
     --danger:#dc2626;--danger-light:#fee2e2;
     --warning:#f59e0b;--warning-light:#fef3c7;
     --text:#0f172a;--text-muted:#64748b;--bg:#fdfbfd;--card:#fff;--border:#e2e8f0;
-    --radius:14px;--shadow:0 1px 3px rgba(0,0,0,.06);
-    --shadow-lg:0 10px 30px rgba(79,70,229,.12);
+    --radius:14px;--shadow-lg:0 10px 30px rgba(79,70,229,.12);
     --shadow-sakura:0 10px 30px rgba(244,114,182,.18);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -23,18 +22,16 @@
   .container{max-width:1080px;margin:0 auto;padding:0 1.25rem}
   .narrow{max-width:820px}
 
-  /* SAKURA */
   .petals-container{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
   .petal{position:absolute;top:-30px;background:linear-gradient(135deg,#fecdd3,#f9a8d4 60%,#f472b6);border-radius:150% 0 150% 0;box-shadow:0 0 6px rgba(249,168,212,.35);animation:fall linear infinite;opacity:0}
   .petal-alt{background:linear-gradient(135deg,#fbcfe8,#f9a8d4 50%,#f0abfc);border-radius:0 150% 0 150%}
   @keyframes fall{0%{transform:translateY(0) translateX(0) rotate(0);opacity:0}8%{opacity:1}92%{opacity:.75}100%{transform:translateY(110vh) translateX(var(--drift,60px)) rotate(720deg);opacity:0}}
   @media(prefers-reduced-motion:reduce){.petal{display:none}}
 
-  /* HEADER */
   .site-header{background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
   .site-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,transparent,var(--sakura),var(--primary),var(--sakura),transparent);opacity:.55}
   .header-inner{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1.25rem;max-width:1080px;margin:0 auto;position:relative}
-  .logo{font-weight:800;font-size:1.1rem;color:var(--primary);display:flex;align-items:center;gap:.45rem}
+  .logo{font-weight:800;font-size:1.05rem;color:var(--primary);display:flex;align-items:center;gap:.45rem}
   .flower-icon{display:inline-block;animation:sway 3.5s ease-in-out infinite}
   @keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
   .logo span{color:var(--text)}
@@ -46,7 +43,6 @@
   .header-sakura.left{left:8px}.header-sakura.right{right:8px;animation-delay:1.5s}
   @keyframes floatF{0%,100%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(-4px) rotate(10deg)}}
 
-  /* BUTTONS */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.6rem 1.15rem;border-radius:10px;font-weight:600;font-size:.92rem;border:none;cursor:pointer;transition:.18s;font-family:inherit;text-decoration:none}
   .btn:disabled{opacity:.65;cursor:not-allowed}
   .btn-primary{background:var(--primary);color:#fff}
@@ -62,7 +58,6 @@
   .btn-sm{padding:.45rem .85rem;font-size:.85rem}
   .btn-block{width:100%}
 
-  /* HERO */
   .hero{background:radial-gradient(ellipse at 20% 10%,rgba(249,168,212,.35) 0,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(196,181,253,.35) 0,transparent 55%),radial-gradient(ellipse at 50% 100%,rgba(251,207,232,.4) 0,transparent 60%),linear-gradient(180deg,#fdf2f8 0,#eef2ff 50%,#f8fafc 100%);padding:4.5rem 1rem 3.5rem;text-align:center;position:relative;overflow:hidden}
   .hero::before,.hero::after{content:"🌸";position:absolute;font-size:5rem;opacity:.18;pointer-events:none;animation:floatF 8s ease-in-out infinite}
   .hero::before{top:8%;left:4%;transform:rotate(-15deg)}
@@ -76,11 +71,9 @@
   #app>*{animation:fadeIn .45s ease-out}
   @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-  /* SECTION TITLE */
   .section-title{font-size:1.35rem;margin:2.5rem 0 1rem;letter-spacing:-.01em;position:relative;padding-left:1rem}
   .section-title::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:70%;background:linear-gradient(180deg,var(--sakura),var(--primary));border-radius:4px}
 
-  /* CARDS */
   .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:1rem}
   .subject-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:.25s;display:block;position:relative;overflow:hidden}
   .subject-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent,var(--primary));transition:height .25s}
@@ -94,7 +87,6 @@
   .mini-progress{height:6px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-bottom:.5rem}
   .mini-progress>div{height:100%;background:var(--accent,var(--primary));border-radius:999px;transition:width .5s}
 
-  /* QUICK PROGRESS */
   .quick-progress{background:linear-gradient(135deg,#fff,#fdf2f8);border:1px solid #fbcfe8;border-radius:var(--radius);padding:1.75rem;margin:2rem 0 3rem;display:flex;gap:2rem;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden}
   .quick-progress::after{content:"🌸";position:absolute;right:-10px;bottom:-20px;font-size:4rem;opacity:.15;transform:rotate(-20deg);pointer-events:none}
   .quick-stats{display:flex;gap:1.5rem;flex-wrap:wrap}
@@ -102,14 +94,12 @@
   .quick-stats .stat strong{display:block;font-size:1.6rem;background:linear-gradient(135deg,var(--sakura),var(--primary));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
   .quick-stats .stat span{font-size:.8rem;color:var(--text-muted)}
 
-  /* COMMON */
   .back-link{display:inline-block;margin:1.5rem 0 1rem;color:var(--primary);font-weight:600;font-size:.92rem}
   .back-link:hover{text-decoration:underline}
   .page-title{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:.5rem;letter-spacing:-.01em}
   .muted{color:var(--text-muted)}
   .small{font-size:.82rem}
 
-  /* SUBJECT HEADER */
   .subject-header{display:flex;gap:1.5rem;align-items:center;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;margin:1rem 0 2rem;border-left:5px solid var(--accent,var(--primary));position:relative;overflow:hidden}
   .subject-header::after{content:"🌸";position:absolute;right:1rem;top:50%;transform:translateY(-50%) rotate(-15deg);font-size:5rem;opacity:.08;pointer-events:none}
   .subject-icon-lg{font-size:3rem;line-height:1}
@@ -118,7 +108,6 @@
   .progress-bar{height:9px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-bottom:.35rem}
   .progress-fill{height:100%;background:var(--primary);border-radius:999px;transition:width .5s}
 
-  /* LESSON */
   .lesson-list{display:flex;flex-direction:column;gap:.75rem;margin-bottom:3rem}
   .lesson-item{display:flex;align-items:center;gap:1rem;background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;transition:.2s}
   .lesson-item:hover{border-color:#c7d2fe;box-shadow:0 4px 16px rgba(244,114,182,.12);transform:translateX(2px)}
@@ -129,7 +118,6 @@
   .lesson-meta{display:flex;gap:.5rem;flex-wrap:wrap}
   .lesson-actions{display:flex;gap:.5rem;flex-shrink:0}
 
-  /* BADGES */
   .badge{display:inline-block;padding:.18rem .55rem;border-radius:6px;font-size:.74rem;font-weight:700}
   .badge-success{background:var(--success-light);color:var(--success)}
   .badge-muted{background:#f1f5f9;color:var(--text-muted)}
@@ -148,7 +136,6 @@
   .lesson-body .example{background:linear-gradient(135deg,var(--sakura-soft),#f5f3ff);border-left:4px solid var(--sakura);padding:.8rem 1rem;border-radius:8px;margin:1rem 0;font-size:.95rem}
   .lesson-footer{display:flex;gap:.75rem;flex-wrap:wrap;padding-bottom:3rem}
 
-  /* QUIZ NHANH */
   .quiz-form{margin:1.5rem 0 2rem}
   .quiz-question{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;transition:.2s}
   .quiz-question:focus-within{border-color:var(--sakura);box-shadow:0 0 0 3px rgba(244,114,182,.1)}
@@ -169,7 +156,6 @@
   .result-header h3{font-size:1.2rem;margin-bottom:.2rem}
   .result-actions{display:flex;gap:.6rem;flex-wrap:wrap;position:relative;z-index:1}
 
-  /* PROGRESS */
   .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.5rem 0 2.5rem}
   .stat-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center;transition:.2s}
   .stat-card:hover{transform:translateY(-2px);border-color:var(--sakura-light);box-shadow:var(--shadow-sakura)}
@@ -194,15 +180,12 @@
   .danger-zone h3{color:var(--danger);margin-bottom:.3rem}
   .danger-zone .btn{margin-top:1rem}
 
-  /* TOAST */
   .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(120%);background:linear-gradient(135deg,var(--sakura),var(--primary));color:#fff;padding:.75rem 1.4rem;border-radius:10px;font-weight:600;font-size:.9rem;box-shadow:0 10px 30px rgba(244,114,182,.4);transition:transform .35s cubic-bezier(.22,1,.36,1);z-index:100}
   .toast.show{transform:translateX(-50%) translateY(0)}
 
-  /* FOOTER */
   .site-footer{text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:.85rem;border-top:1px solid var(--border);background:linear-gradient(180deg,#fff,var(--sakura-soft))}
   .site-footer::before{content:"🌸  🌸  🌸";display:block;font-size:1rem;opacity:.4;margin-bottom:.5rem;letter-spacing:1rem}
 
-  /* EXAM */
   .exam-card{display:block;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:.22s;position:relative;overflow:hidden}
   .exam-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,var(--primary))}
   .exam-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-sakura);border-color:var(--accent,var(--primary))}
@@ -298,7 +281,7 @@
   <span class="header-sakura left" aria-hidden="true">🌸</span>
   <span class="header-sakura right" aria-hidden="true">🌸</span>
   <div class="header-inner">
-    <a href="#/" class="logo"><span class="flower-icon">🌸</span><span>Ôn Thi Vào 10</span></a>
+    <a href="#/" class="logo"><span class="flower-icon">🌸</span><span>Ôn Thi THPT Quốc Gia</span></a>
     <nav class="main-nav">
       <a href="#/" id="nav-home">Trang chủ</a>
       <a href="#/exams" id="nav-exams">Đề thi</a>
@@ -309,7 +292,7 @@
 
 <main id="app"></main>
 
-<footer class="site-footer">© 2026 Ôn Thi Vào 10 · Dữ liệu tiến độ được lưu trên trình duyệt của bạn</footer>
+<footer class="site-footer">© 2026 Ôn Thi THPT Quốc Gia · Dữ liệu tiến độ được lưu trên trình duyệt của bạn</footer>
 
 <script>
 /* ============================================================
@@ -332,115 +315,301 @@ function initSakura() {
   }
 }
 
-/* ============================================================
-   ESCAPE HTML - quan trọng để tránh XSS và lỗi render
-   ============================================================ */
 function esc(str) {
   if (str === undefined || str === null) return "";
   return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
 }
 
 /* ============================================================
-   DỮ LIỆU MÔN HỌC
+   MÔN HỌC - KIẾN THỨC LỚP 12 / THPT QUỐC GIA
    ============================================================ */
 const SUBJECTS = [
-  { id:"toan", name:"Toán", icon:"📐", color:"#4f46e5", description:"Đại số, Hình học, Thống kê & Xác suất",
+  { id:"toan", name:"Toán", icon:"📐", color:"#4f46e5", description:"Hàm số, Mũ – Logarit, Tích phân, Số phức, Oxyz",
     lessons:[
-      { id:"toan-1", title:"Căn thức bậc hai", content:`<h3>1. Căn bậc hai số học</h3><p>Với <strong>a ≥ 0</strong>, căn bậc hai số học của a là <strong>x ≥ 0</strong> sao cho x² = a.</p><h3>2. Hằng đẳng thức</h3><p><strong>√A² = |A|</strong></p><h3>3. Điều kiện xác định</h3><p>√A xác định khi <strong>A ≥ 0</strong>.</p><div class="example"><strong>Ví dụ:</strong> √(x−3) xác định khi x ≥ 3.</div>`,
-        quiz:[{q:"Căn bậc hai số học của 25 là:",options:["5","−5","±5","50"],correct:0},{q:"√((−4)²) bằng:",options:["−4","4","16","−16"],correct:1},{q:"√(x−3) xác định khi:",options:["x>3","x≥3","x<3","x≤3"],correct:1}] },
-      { id:"toan-2", title:"Hàm số bậc nhất", content:`<h3>1. Định nghĩa</h3><p>Dạng <strong>y = ax + b</strong> (a ≠ 0).</p><h3>2. Tính chất</h3><ul><li>Đồng biến khi <strong>a &gt; 0</strong>.</li><li>Nghịch biến khi <strong>a &lt; 0</strong>.</li></ul><h3>3. Đồ thị</h3><p>Là một <strong>đường thẳng</strong>, cắt trục tung tại (0;b).</p>`,
-        quiz:[{q:"Hàm số nào là bậc nhất?",options:["y=x²+1","y=1/x+2","y=−2x+3","y=√x"],correct:2},{q:"Đồ thị hàm bậc nhất là:",options:["Parabol","Đường thẳng","Đường tròn","Hyperbol"],correct:1},{q:"Hệ số góc của y=3x−2:",options:["−2","3","−3","2"],correct:1}] },
-      { id:"toan-3", title:"Phương trình bậc hai", content:`<h3>1. Định nghĩa</h3><p><strong>ax² + bx + c = 0</strong> (a ≠ 0).</p><h3>2. Công thức</h3><p>Δ = b² − 4ac:</p><ul><li>Δ &gt; 0: hai nghiệm phân biệt.</li><li>Δ = 0: nghiệm kép x = −b/2a.</li><li>Δ &lt; 0: vô nghiệm.</li></ul><h3>3. Vi-ét</h3><p style="text-align:center"><strong>x₁ + x₂ = −b/a; x₁·x₂ = c/a</strong></p>`,
-        quiz:[{q:"Nghiệm của x²−5x+6=0:",options:["x=1;x=6","x=2;x=3","x=−2;x=−3","Vô nghiệm"],correct:1},{q:"Δ của x²+2x+1=0:",options:["0","4","8","−4"],correct:0},{q:"Tổng nghiệm x²−5x+6=0:",options:["−5","6","5","−6"],correct:2}] },
-      { id:"toan-4", title:"Hệ thức lượng tam giác vuông", content:`<h3>1. Hệ thức</h3><ul><li>b² = a·b' ; c² = a·c'</li><li>h² = b'·c'</li><li>b·c = a·h</li></ul><h3>2. Tỉ số lượng giác</h3><ul><li>sin α = đối/huyền; cos α = kề/huyền</li><li>tan α = đối/kề; cot α = kề/đối</li></ul><div class="example"><strong>Ví dụ:</strong> AB=3, AC=4 → BC=5.</div>`,
-        quiz:[{q:"Định lý Py-ta-go:",options:["a²=b²+c²","a=b+c","a²=b·c","a=2b"],correct:0},{q:"sin α =",options:["kề/huyền","đối/huyền","đối/kề","huyền/đối"],correct:1},{q:"AB=3, AC=4 → BC=?",options:["5","7","12","25"],correct:0}] }
+      { id:"toan-1", title:"Khảo sát và vẽ đồ thị hàm số", content:`
+        <h3>1. Sự đồng biến, nghịch biến</h3>
+        <p>Cho hàm số y = f(x) có đạo hàm trên K:</p>
+        <ul><li>Nếu f'(x) > 0 với mọi x ∈ K thì hàm số đồng biến trên K.</li>
+        <li>Nếu f'(x) < 0 với mọi x ∈ K thì hàm số nghịch biến trên K.</li></ul>
+        <h3>2. Cực trị</h3>
+        <p>Nếu f'(x) đổi dấu từ (+) sang (−) khi qua x₀ thì x₀ là điểm cực đại; ngược lại là cực tiểu.</p>
+        <h3>3. Giá trị lớn nhất – nhỏ nhất</h3>
+        <p>Trên [a;b], so sánh f(a), f(b) và các giá trị f(xᵢ) tại các điểm tới hạn.</p>
+        <h3>4. Tiệm cận</h3>
+        <ul><li>Tiệm cận đứng x = x₀ nếu limₓ→x₀ f(x) = ±∞.</li>
+        <li>Tiệm cận ngang y = y₀ nếu limₓ→±∞ f(x) = y₀.</li></ul>
+        <div class="example"><strong>Ví dụ:</strong> y = (2x+1)/(x−1) có tiệm cận đứng x = 1, tiệm cận ngang y = 2.</div>`,
+        quiz:[
+          {q:"Hàm số y = x³ − 3x đồng biến trên khoảng nào?",options:["(−∞;−1) và (1;+∞)","(−1;1)","(−∞;1)","(1;+∞)"],correct:0},
+          {q:"Đồ thị hàm số y = (2x+1)/(x−3) có tiệm cận đứng là:",options:["x = 2","x = 3","x = −3","y = 2"],correct:1},
+          {q:"Hàm số y = −x³ + 3x có bao nhiêu điểm cực trị?",options:["0","1","2","3"],correct:2}
+        ]
+      },
+      { id:"toan-2", title:"Hàm số mũ và logarit", content:`
+        <h3>1. Lũy thừa và logarit</h3>
+        <p>logₐb = c ⇔ aᶜ = b (a > 0, a ≠ 1, b > 0).</p>
+        <h3>2. Công thức logarit</h3>
+        <ul><li>logₐ(bc) = logₐb + logₐc</li>
+        <li>logₐ(b/c) = logₐb − logₐc</li>
+        <li>logₐbⁿ = n·logₐb</li>
+        <li>logₐb = logc(b)/logc(a)</li></ul>
+        <h3>3. Phương trình mũ</h3>
+        <p>aᶠ⁽ˣ⁾ = aᵍ⁽ˣ⁾ ⇔ f(x) = g(x) (0 < a ≠ 1).</p>
+        <h3>4. Phương trình logarit</h3>
+        <p>logₐf(x) = logₐg(x) ⇔ f(x) = g(x) > 0.</p>
+        <div class="example"><strong>Ví dụ:</strong> log₂(x−1) = 3 ⇔ x−1 = 8 ⇔ x = 9.</div>`,
+        quiz:[
+          {q:"Nghiệm của phương trình 2^x = 8 là:",options:["x = 2","x = 3","x = 4","x = 8"],correct:1},
+          {q:"log₂(16) bằng:",options:["2","3","4","8"],correct:2},
+          {q:"Tập nghiệm của log₂(x−1) < 3 là:",options:["(1;9)","(−∞;9)","(9;+∞)","(1;7)"],correct:0}
+        ]
+      },
+      { id:"toan-3", title:"Nguyên hàm – Tích phân", content:`
+        <h3>1. Nguyên hàm cơ bản</h3>
+        <ul><li>∫xⁿdx = xⁿ⁺¹/(n+1) + C (n ≠ −1)</li>
+        <li>∫(1/x)dx = ln|x| + C</li>
+        <li>∫eˣdx = eˣ + C</li>
+        <li>∫aˣdx = aˣ/lna + C</li>
+        <li>∫cos x dx = sin x + C; ∫sin x dx = −cos x + C</li></ul>
+        <h3>2. Tích phân Newton–Leibniz</h3>
+        <p>∫ₐᵇ f(x)dx = F(b) − F(a).</p>
+        <h3>3. Ứng dụng</h3>
+        <ul><li>Diện tích hình phẳng: S = ∫ₐᵇ |f(x) − g(x)| dx</li>
+        <li>Thể tích khối tròn xoay: V = π∫ₐᵇ [f(x)]² dx</li></ul>
+        <div class="example"><strong>Ví dụ:</strong> ∫₀¹ 2x dx = x²|₀¹ = 1.</div>`,
+        quiz:[
+          {q:"Nguyên hàm của f(x) = x⁴ + x² là:",options:["4x³ + 2x + C","(1/5)x⁵ + (1/3)x³ + C","x⁵ + x³ + C","x⁴ + x² + C"],correct:1},
+          {q:"∫₀¹ 2x dx bằng:",options:["0","1","2","1/2"],correct:1},
+          {q:"Nguyên hàm của eˣ là:",options:["x·eˣ + C","eˣ + C","eˣ/x + C","eˣ⁺¹/(x+1) + C"],correct:1}
+        ]
+      },
+      { id:"toan-4", title:"Số phức", content:`
+        <h3>1. Định nghĩa</h3>
+        <p>Số phức z = a + bi (a, b ∈ ℝ, i² = −1). a là phần thực, b là phần ảo.</p>
+        <h3>2. Phép toán</h3>
+        <ul><li>(a+bi) + (c+di) = (a+c) + (b+d)i</li>
+        <li>(a+bi)(c+di) = (ac−bd) + (ad+bc)i</li></ul>
+        <h3>3. Môđun</h3>
+        <p>|z| = √(a² + b²).</p>
+        <h3>4. Số phức liên hợp</h3>
+        <p>z̄ = a − bi. Ta có z·z̄ = a² + b² = |z|².</p>
+        <div class="example"><strong>Ví dụ:</strong> z = 3 + 4i có |z| = 5.</div>`,
+        quiz:[
+          {q:"Môđun của số phức z = 3 + 4i là:",options:["3","4","5","25"],correct:2},
+          {q:"Số phức liên hợp của z = 2 − 5i là:",options:["2 + 5i","−2 + 5i","−2 − 5i","5 + 2i"],correct:0},
+          {q:"(1+i)(1−i) bằng:",options:["0","1","2","2i"],correct:2}
+        ]
+      },
+      { id:"toan-5", title:"Hình học tọa độ Oxyz", content:`
+        <h3>1. Tọa độ điểm và vectơ</h3>
+        <p>A(xₐ;yₐ;zₐ), B(xᵦ;yᵦ;zᵦ). Vectơ AB = (xᵦ−xₐ; yᵦ−yₐ; zᵦ−zₐ).</p>
+        <h3>2. Phương trình mặt phẳng</h3>
+        <p>(P): Ax + By + Cz + D = 0, VTPT n = (A; B; C).</p>
+        <h3>3. Phương trình đường thẳng</h3>
+        <p>d qua M(x₀;y₀;z₀) có VTCP u = (a;b;c) có PT chính tắc:</p>
+        <p style="text-align:center"><strong>(x−x₀)/a = (y−y₀)/b = (z−z₀)/c</strong></p>
+        <h3>4. Phương trình mặt cầu</h3>
+        <p>(S): (x−a)² + (y−b)² + (z−c)² = R². Tâm I(a;b;c), bán kính R.</p>
+        <div class="example"><strong>Ví dụ:</strong> (S): (x−1)² + (y+2)² + z² = 9 có tâm I(1;−2;0), R = 3.</div>`,
+        quiz:[
+          {q:"Mặt cầu (x−1)² + (y+2)² + z² = 9 có bán kính:",options:["3","9","6","1"],correct:0},
+          {q:"Mặt phẳng (P): x − 3y − z + 8 = 0 có một VTPT là:",options:["(1;−3;1)","(1;−3;−1)","(1;−3;8)","(1;3;8)"],correct:1},
+          {q:"Trung điểm của A(1;2;3) và B(3;0;1) là:",options:["(2;1;2)","(4;2;4)","(1;−1;−1)","(2;−1;2)"],correct:0}
+        ]
+      },
+      { id:"toan-6", title:"Xác suất có điều kiện", content:`
+        <h3>1. Công thức xác suất có điều kiện</h3>
+        <p>P(A|B) = P(A∩B)/P(B) với P(B) > 0.</p>
+        <h3>2. Công thức nhân xác suất</h3>
+        <p>P(A∩B) = P(B)·P(A|B) = P(A)·P(B|A).</p>
+        <h3>3. Biến cố độc lập</h3>
+        <p>A, B độc lập ⇔ P(A∩B) = P(A)·P(B).</p>
+        <h3>4. Công thức xác suất toàn phần</h3>
+        <p>P(A) = ΣP(Bᵢ)·P(A|Bᵢ) với {Bᵢ} là hệ đầy đủ.</p>
+        <div class="example"><strong>Ví dụ:</strong> Hộp I: 6 đỏ, 4 vàng. Hộp II: 7 đỏ, 3 vàng. Lấy 1 bóng hộp I bỏ sang hộp II, rồi lấy 1 bóng hộp II. P(bóng đỏ được chuyển) = 0,6·(1/11) + 0,4·(0/11) ≈ 0,27.</div>`,
+        quiz:[
+          {q:"Nếu A, B độc lập thì P(A∩B) bằng:",options:["P(A)+P(B)","P(A)·P(B)","P(A)−P(B)","P(A)/P(B)"],correct:1},
+          {q:"P(A|B) được tính bằng:",options:["P(A∩B)/P(B)","P(B)/P(A∩B)","P(A)·P(B)","P(A)−P(B)"],correct:0},
+          {q:"Công thức xác suất toàn phần dùng khi:",options:["A độc lập B","Hệ biến cố đầy đủ","P(A)=0","A = B"],correct:1}
+        ]
+      }
     ]
   },
-  { id:"van", name:"Ngữ văn", icon:"📖", color:"#db2777", description:"Đọc hiểu, Nghị luận xã hội, Nghị luận văn học",
+  { id:"van", name:"Ngữ văn", icon:"📖", color:"#db2777", description:"Đọc hiểu, Nghị luận xã hội, Nghị luận văn học lớp 12",
     lessons:[
-      { id:"van-1", title:"Kỹ năng đọc hiểu", content:`<h3>1. Phương thức biểu đạt</h3><p>6 loại: <strong>tự sự, miêu tả, biểu cảm, nghị luận, thuyết minh, hành chính – công vụ</strong>.</p><h3>2. Biện pháp tu từ</h3><ul><li>So sánh, Ẩn dụ, Hoán dụ, Nhân hóa, Điệp ngữ.</li></ul>`,
-        quiz:[{q:"Văn bản thuyết minh có phương thức chính:",options:["Tự sự","Miêu tả","Thuyết minh","Biểu cảm"],correct:2},{q:"'Mặt trời của bắp' là:",options:["So sánh","Ẩn dụ","Nhân hóa","Hoán dụ"],correct:1}] },
-      { id:"van-2", title:"Nghị luận xã hội", content:`<h3>1. Bố cục</h3><p>3 phần: <strong>Mở – Thân – Kết</strong>.</p><h3>2. Dẫn chứng</h3><p>Phải <strong>tiêu biểu, xác thực</strong>.</p>`,
-        quiz:[{q:"Bố cục bài nghị luận xã hội:",options:["2 phần","3 phần","4 phần","5 phần"],correct:1},{q:"Dẫn chứng cần:",options:["Thật nhiều","Tiêu biểu, xác thực","Càng dài càng tốt","Không cần"],correct:1}] }
+      { id:"van-1", title:"Kỹ năng đọc hiểu", content:`
+        <h3>1. Phương thức biểu đạt</h3>
+        <p>6 loại: <strong>tự sự, miêu tả, biểu cảm, nghị luận, thuyết minh, hành chính – công vụ</strong>.</p>
+        <h3>2. Phong cách ngôn ngữ</h3>
+        <ul><li>Sinh hoạt, khoa học, chính luận, báo chí, nghệ thuật, hành chính.</li></ul>
+        <h3>3. Biện pháp tu từ</h3>
+        <ul><li>So sánh, Ẩn dụ, Hoán dụ, Nhân hóa, Điệp ngữ, Nói quá, Nói giảm – nói tránh, Câu hỏi tu từ, Liệt kê, Chơi chữ.</li></ul>
+        <h3>4. Các thao tác lập luận</h3>
+        <p>Giải thích, Chứng minh, Phân tích, So sánh, Bình luận, Bác bỏ.</p>
+        <div class="example"><strong>Lưu ý:</strong> Phân tích biện pháp tu từ cần nêu: tên — biểu hiện — tác dụng.</div>`,
+        quiz:[
+          {q:"Phong cách ngôn ngữ báo chí dùng để:",options:["Truyền đạt thông tin thời sự","Bộc lộ cảm xúc","Giảng giải khoa học","Ra mệnh lệnh"],correct:0},
+          {q:"'Mặt trời của bắp' là biện pháp:",options:["So sánh","Ẩn dụ","Nhân hóa","Hoán dụ"],correct:1},
+          {q:"Thao tác lập luận nào KHÔNG có trong văn nghị luận?",options:["Giải thích","Chứng minh","Bình luận","Vẽ hình"],correct:3}
+        ]
+      },
+      { id:"van-2", title:"Nghị luận xã hội", content:`
+        <h3>1. Các dạng đề</h3>
+        <ul><li>Nghị luận về tư tưởng, đạo lý.</li>
+        <li>Nghị luận về hiện tượng đời sống.</li></ul>
+        <h3>2. Bố cục</h3>
+        <ul><li><strong>Mở bài:</strong> Giới thiệu vấn đề.</li>
+        <li><strong>Thân bài:</strong> Giải thích — Phân tích — Bình luận — Dẫn chứng.</li>
+        <li><strong>Kết bài:</strong> Khẳng định lại, liên hệ bản thân.</li></ul>
+        <h3>3. Dẫn chứng</h3>
+        <p>Tiêu biểu, xác thực, phù hợp với vấn đề; lấy từ thực tế, lịch sử, văn học.</p>
+        <div class="example"><strong>Mẹo:</strong> Mỗi đoạn thân bài cần có câu chủ đề rõ ràng, sau đó triển khai bằng lý lẽ và dẫn chứng.</div>`,
+        quiz:[
+          {q:"Bố cục bài NLXH gồm mấy phần?",options:["2","3","4","5"],correct:1},
+          {q:"Dẫn chứng trong NLXH cần:",options:["Thật nhiều","Tiêu biểu, xác thực","Càng dài càng tốt","Không cần"],correct:1},
+          {q:"Bước nào KHÔNG có trong NLXH?",options:["Giải thích","Phân tích","Bình luận","Vẽ minh họa"],correct:3}
+        ]
+      },
+      { id:"van-3", title:"Nghị luận văn học lớp 12", content:`
+        <h3>1. Tác phẩm trọng tâm</h3>
+        <p><strong>Thơ:</strong> Tây Tiến (Quang Dũng), Việt Bắc (Tố Hữu), Đất Nước (Nguyễn Khoa Điềm), Sóng (Xuân Quỳnh), Đàn ghi ta của Lor-ca (Thanh Thảo).</p>
+        <p><strong>Văn xuôi:</strong> Người lái đò sông Đà (Nguyễn Tuân), Ai đã đặt tên cho dòng sông (Hoàng Phủ Ngọc Tường), Vợ chồng A Phủ (Tô Hoài), Vợ nhặt (Kim Lân), Chiếc thuyền ngoài xa (Nguyễn Minh Châu).</p>
+        <p><strong>Kịch:</strong> Hồn Trương Ba, da hàng thịt (Lưu Quang Vũ).</p>
+        <h3>2. Phân tích nhân vật</h3>
+        <p>Lai lịch — ngoại hình — hành động — ngôn ngữ — nội tâm — quan hệ với nhân vật khác.</p>
+        <h3>3. Phân tích thơ</h3>
+        <p>Mạch cảm xúc — hình ảnh — ngôn từ — biện pháp nghệ thuật — tư tưởng tác giả.</p>
+        <div class="example"><strong>Lưu ý:</strong> Không kể lại tác phẩm; cần phân tích, bình luận, làm nổi bật dụng ý nghệ thuật.</div>`,
+        quiz:[
+          {q:"Tác phẩm nào KHÔNG thuộc chương trình Ngữ văn 12?",options:["Tây Tiến","Vợ nhặt","Lão Hạc","Sóng"],correct:2},
+          {q:"'Ai đã đặt tên cho dòng sông' là tác phẩm của:",options:["Nguyễn Tuân","Hoàng Phủ Ngọc Tường","Nguyễn Minh Châu","Tô Hoài"],correct:1},
+          {q:"Phân tích nhân vật cần làm rõ:",options:["Chỉ ngoại hình","Chỉ tính cách","Ngoại hình, hành động, nội tâm...","Chỉ số phận"],correct:2}
+        ]
+      }
     ]
   },
-  { id:"anh", name:"Tiếng Anh", icon:"🌍", color:"#0891b2", description:"Ngữ âm, Ngữ pháp, Đọc hiểu, Viết",
+  { id:"anh", name:"Tiếng Anh", icon:"🌍", color:"#0891b2", description:"Ngữ âm, Ngữ pháp nâng cao, Đọc hiểu & Viết",
     lessons:[
-      { id:"anh-1", title:"Ngữ âm -ed và -s", content:`<h3>1. -ed</h3><ul><li><strong>/ɪd/:</strong> sau -t, -d.</li><li><strong>/t/:</strong> sau âm vô thanh.</li><li><strong>/d/:</strong> còn lại.</li></ul><h3>2. -s</h3><ul><li><strong>/ɪz/:</strong> sau s,z,sh,ch,x,g,c.</li><li><strong>/s/:</strong> sau âm vô thanh.</li><li><strong>/z/:</strong> còn lại.</li></ul>`,
-        quiz:[{q:"'wanted' -ed đọc là:",options:["/t/","/d/","/ɪd/","/z/"],correct:2},{q:"'played' -ed đọc là:",options:["/t/","/d/","/ɪd/","/s/"],correct:1},{q:"'books' -s đọc là:",options:["/s/","/z/","/ɪz/","/ʃ/"],correct:0}] },
-      { id:"anh-2", title:"Hiện tại hoàn thành", content:`<h3>Cấu trúc</h3><p><strong>S + have/has + V3/ed</strong></p><h3>Dấu hiệu</h3><p><em>already, yet, just, ever, never, since, for...</em></p>`,
-        quiz:[{q:"I ______ here since 2020.",options:["live","lived","have lived","am living"],correct:2},{q:"She ______ to Paris twice.",options:["has been","was","is","goes"],correct:0},{q:"Cấu trúc hiện tại hoàn thành:",options:["S+V2/ed","S+have/has+V3/ed","S+am/is/are+V-ing","S+will+V"],correct:1}] },
-      { id:"anh-3", title:"Câu điều kiện", content:`<h3>Loại 1</h3><p><strong>If + S + V (HTĐ), S + will + V</strong></p><h3>Loại 2</h3><p><strong>If + S + V2/ed, S + would + V</strong></p><h3>Loại 3</h3><p><strong>If + S + had + V3/ed, S + would have + V3/ed</strong></p>`,
-        quiz:[{q:"If it ______, we will stay home.",options:["rains","rained","will rain","raining"],correct:0},{q:"If I were you, I ______ study harder.",options:["will","would","can","am"],correct:1},{q:"Câu ĐK loại 1:",options:["Không thật quá khứ","Không thật hiện tại","Có thể xảy ra hiện tại/tương lai","Chắc chắn xảy ra"],correct:2}] }
+      { id:"anh-1", title:"Ngữ âm & Trọng âm", content:`
+        <h3>1. Phát âm đuôi -ed</h3>
+        <ul><li><strong>/ɪd/:</strong> sau -t, -d. Ví dụ: wanted, needed.</li>
+        <li><strong>/t/:</strong> sau âm vô thanh (p, k, f, s, sh, ch, x).</li>
+        <li><strong>/d/:</strong> các trường hợp còn lại.</li></ul>
+        <h3>2. Phát âm đuôi -s/-es</h3>
+        <ul><li><strong>/ɪz/:</strong> sau s, z, sh, ch, x, g, c.</li>
+        <li><strong>/s/:</strong> sau âm vô thanh (p, t, k, f, th).</li>
+        <li><strong>/z/:</strong> các trường hợp còn lại.</li></ul>
+        <h3>3. Trọng âm</h3>
+        <ul><li>Từ 2 âm tiết: danh từ/tính từ thường nhấn âm 1 (PREsent, HAPpy); động từ nhấn âm 2 (preSENT, reLAX).</li>
+        <li>Từ có đuôi -tion, -sion, -ic, -ity: nhấn âm trước đuôi (inforMAtion, ecoNOMic).</li></ul>`,
+        quiz:[
+          {q:"'wanted' có -ed phát âm:",options:["/t/","/d/","/ɪd/","/z/"],correct:2},
+          {q:"'books' có -s phát âm:",options:["/s/","/z/","/ɪz/","/ʃ/"],correct:0},
+          {q:"Từ nào có trọng âm khác?",options:["possible","national","creative","different"],correct:2}
+        ]
+      },
+      { id:"anh-2", title:"Ngữ pháp nâng cao", content:`
+        <h3>1. Câu điều kiện</h3>
+        <ul><li><strong>Loại 1:</strong> If + S + V(HTĐ), S + will + V.</li>
+        <li><strong>Loại 2:</strong> If + S + V2/ed, S + would + V.</li>
+        <li><strong>Loại 3:</strong> If + S + had + V3/ed, S + would have + V3/ed.</li>
+        <li><strong>Hỗn hợp:</strong> If + S + had + V3/ed, S + would + V (now).</li></ul>
+        <h3>2. Mệnh đề quan hệ</h3>
+        <ul><li>WHO (người) — WHICH (vật) — WHOM (tân ngữ người) — WHOSE (sở hữu) — THAT (thay who/which sau all, everything...).</li>
+        <li>Rút gọn: V-ing (chủ động), V3/ed (bị động), to V (mục đích, sau the first/last...).</li></ul>
+        <h3>3. Câu bị động</h3>
+        <p>S + be + V3/ed (+ by O). Chú ý các thì và động từ khuyết thiếu.</p>
+        <h3>4. Đảo ngữ</h3>
+        <ul><li>Never/Rarely/Seldom + trợ động từ + S + V.</li>
+        <li>Hardly + had + S + V3/ed + when + S + V2/ed.</li>
+        <li>Not only + trợ + S + V + but also...</li></ul>`,
+        quiz:[
+          {q:"If I ______ you, I would study harder.",options:["am","was","were","be"],correct:2},
+          {q:"The plants ______ by my brother every day.",options:["watered","are watering","water","are watered"],correct:3},
+          {q:"This is the girl ______ won the first prize.",options:["who","whom","which","whose"],correct:0}
+        ]
+      },
+      { id:"anh-3", title:"Đọc hiểu & Viết", content:`
+        <h3>1. Kỹ năng đọc hiểu</h3>
+        <ul><li>Skimming: đọc lướt tìm ý chính.</li>
+        <li>Scanning: đọc quét tìm thông tin cụ thể.</li>
+        <li>Đọc câu hỏi trước → xác định từ khóa → tìm đoạn chứa đáp án.</li></ul>
+        <h3>2. Các dạng câu hỏi thường gặp</h3>
+        <ul><li>Main idea / Purpose.</li>
+        <li>Detail / Inference.</li>
+        <li>Vocabulary (closest/opposite meaning).</li>
+        <li>Reference (đại từ thay thế).</li></ul>
+        <h3>3. Viết lại câu</h3>
+        <ul><li>Chủ động ↔ Bị động.</li>
+        <li>Trực tiếp ↔ Gián tiếp.</li>
+        <li>Câu điều kiện, so sánh, đảo ngữ.</li></ul>
+        <div class="example"><strong>Mẹo:</strong> Với câu hỏi từ vựng, dùng ngữ cảnh để đoán nghĩa thay vì dịch từng từ.</div>`,
+        quiz:[
+          {q:"'Ruins' (trong ngữ cảnh ô nhiễm) gần nghĩa với:",options:["protects","destroys","cleans","improves"],correct:1},
+          {q:"Skimming dùng để:",options:["Tìm ý chính","Tìm số liệu cụ thể","Dịch từng từ","Viết lại câu"],correct:0},
+          {q:"Câu nào viết lại đúng từ 'People speak English worldwide'?",options:["English speaks worldwide.","English is spoken worldwide.","English was spoken worldwide.","English is speaking worldwide."],correct:1}
+        ]
+      }
     ]
   }
 ];
 
 /* ============================================================
-   DỮ LIỆU ĐỀ THI — BÁM SÁT ĐỀ MINH HỌA 2025
+   ĐỀ THI - CẤU TRÚC THPT QUỐC GIA 2025
    ============================================================ */
 const EXAMS = [
   {
     id: "toan-de1", subjectId: "toan",
-    title: "Đề thi thử Toán — Số 1",
-    description: "Cấu trúc đề minh họa 2025: 24 TN + 4 ĐS + 3 TLN",
+    title: "Đề thi thử THPT Quốc gia — Toán số 1",
+    description: "Cấu trúc 2025: 12 TN (3đ) + 4 ĐS (4đ) + 6 TLN (3đ) — 90 phút",
     duration: 90, totalPoints: 10,
     sections: [
       {
-        name: "PHẦN I. TRẮC NGHIỆM",
+        name: "PHẦN I. TRẮC NGHIỆM (3,0 điểm)",
         instruction: "Chọn đáp án đúng nhất (0,25 điểm/câu).",
         questions: [
           { type:"mcq", points:0.25, q:"Nguyên hàm của hàm số f(x) = e^x là:", options:["e^(x+1)/(x+1) + C","e^x + C","e^x/x + C","x·e^(x−1) + C"], correct:1 },
           { type:"mcq", points:0.25, q:"Thể tích khối tròn xoay khi quay hình phẳng giới hạn bởi y=f(x)>0, trục Ox, x=a, x=b quanh Ox là:", options:["π∫|f(x)|dx","π²∫f(x)dx","π²∫[f(x)]²dx","π∫[f(x)]²dx"], correct:3 },
-          { type:"mcq", points:0.25, q:"Hai mẫu số liệu ghép nhóm M₁, M₂ có tần số M₁ gấp đôi M₂. Gọi s₁, s₂ là độ lệch chuẩn. Phát biểu đúng:", options:["s₁ = s₂","s₁ = 2s₂","2s₁ = s₂","4s₁ = s₂"], correct:0 },
           { type:"mcq", points:0.25, q:"Trong Oxyz, đường thẳng qua M(1;−3;5) có VTCP u=(2;−1;1) có phương trình:", options:["(x−1)/2 = (y−3)/(−1) = (z−5)/1","(x−1)/2 = (y+3)/(−1) = (z−5)/1","(x−1)/2 = (y+3)/(−1) = (z+5)/1","(x+1)/2 = (y+3)/(−1) = (z−5)/1"], correct:1 },
           { type:"mcq", points:0.25, q:"Tập nghiệm của bất phương trình log₂(x−1) < 3 là:", options:["(1;9)","(−∞;9)","(9;+∞)","(1;7)"], correct:0 },
-          { type:"mcq", points:0.25, q:"Trong Oxyz, mặt phẳng (P): x − 3y − z + 8 = 0 có một VTPT là:", options:["(1;−3;1)","(1;−3;−1)","(1;−3;8)","(1;3;8)"], correct:1 },
-          { type:"mcq", points:0.25, q:"Hình chóp S.ABCD có đáy là hình chữ nhật và SA ⊥ (ABCD). Mặt phẳng vuông góc với (ABCD) là:", options:["(SAB)","(SBC)","(SCD)","(SBD)"], correct:0 },
           { type:"mcq", points:0.25, q:"Nghiệm của phương trình 2^x = 6 là:", options:["log₆2","3","4","log₂6"], correct:3 },
           { type:"mcq", points:0.25, q:"Cấp số cộng (uₙ) có u₁ = 3, u₅ = 11. Số hạng u₂ là:", options:["5","7","9","11"], correct:0 },
           { type:"mcq", points:0.25, q:"Nguyên hàm của f(x) = x⁴ + x² là:", options:["4x³ + 2x + C","(1/5)x⁵ + (1/3)x³ + C","x⁵ + x³ + C","x⁴ + x² + C"], correct:1 },
-          { type:"mcq", points:0.25, q:"Khẳng định SAI là:", options:["sin(a+b) = sin a·cos b + cos a·sin b","cos(a+b) = cos a·cos b − sin a·sin b","cos(a−b) = cos a·cos b − sin a·sin b","sin(a−b) = sin a·cos b − cos a·sin b"], correct:2 },
-          { type:"mcq", points:0.25, q:"Cự li ném tạ có các nhóm [19;19,5), [19,5;20), ..., [21;21,5). Khoảng biến thiên là:", options:["3","2,5","1,5","2"], correct:1 },
           { type:"mcq", points:0.25, q:"Hộp có 6 đỏ, 4 xanh, lấy 3 quả. Xác suất lấy được 3 xanh là:", options:["1/6","2/5","1/5","1/30"], correct:3 },
-          { type:"mcq", points:0.25, q:"Cho ∫ₐᵇ f(x)dx = 2 và ∫ₐᶜ f(x)dx = 5. Khi đó ∫_b^c f(x)dx bằng:", options:["−7","3","7","−3"], correct:1 },
-          { type:"mcq", points:0.25, q:"Cấp số nhân u₁ = −6, q = 2. Số hạng u₅ là:", options:["24","−96","96","−24"], correct:1 },
-          { type:"mcq", points:0.25, q:"Trong Oxyz, A(1;2;3), B(3;0;1). Trung điểm AB có tọa độ:", options:["(2;1;2)","(4;2;4)","(1;−1;−1)","(2;−1;2)"], correct:0 },
+          { type:"mcq", points:0.25, q:"Cấp số nhân có u₁ = −6, q = 2. Số hạng u₅ là:", options:["24","−96","96","−24"], correct:1 },
           { type:"mcq", points:0.25, q:"Hàm số y = −x³ + 3x có bao nhiêu điểm cực trị?", options:["0","1","2","3"], correct:2 },
-          { type:"mcq", points:0.25, q:"Hình nón r = 3, l = 5. Diện tích xung quanh là:", options:["15π","12π","9π","24π"], correct:0 },
-          { type:"mcq", points:0.25, q:"Giá trị lớn nhất của y = x³ − 3x + 2 trên [0;2]:", options:["2","4","0","1"], correct:1 },
-          { type:"mcq", points:0.25, q:"Mặt cầu (S): (x−1)² + (y+2)² + z² = 9 có bán kính:", options:["3","9","6","1"], correct:0 },
-          { type:"mcq", points:0.25, q:"log₃(x+2) = 2 có nghiệm:", options:["x = 7","x = 5","x = 9","x = 11"], correct:0 },
-          { type:"mcq", points:0.25, q:"Hàm số y = (ax+b)/(cx+d) có tiệm cận ngang y = 1/2 khi:", options:["a/c = 2","a/c = 1/2","b/d = 1/2","a/b = 1/2"], correct:1 },
-          { type:"mcq", points:0.25, q:"Cho hình hộp ABCD.A'B'C'D'. Đẳng thức đúng là:", options:["AB + BB' + B'A' = AC'","AB + BC' + C'D' = AC'","AB + AC + AA' = AC'","AB + AA' + AD = AC'"], correct:3 },
-          { type:"mcq", points:0.25, q:"Hàm số y = x³−3x nghịch biến trên khoảng:", options:["(−∞;−1)","(−1;1)","(1;+∞)","(−∞;1)"], correct:1 }
+          { type:"mcq", points:0.25, q:"Giá trị lớn nhất của y = x³ − 3x + 2 trên [0;2] là:", options:["2","4","0","1"], correct:1 },
+          { type:"mcq", points:0.25, q:"Mặt cầu (S): (x−1)² + (y+2)² + z² = 9 có bán kính bằng:", options:["3","9","6","1"], correct:0 }
         ]
       },
       {
-        name: "PHẦN II. ĐÚNG / SAI",
-        instruction: "Chọn Đúng hoặc Sai cho mỗi nhận định (0,5 điểm/câu).",
+        name: "PHẦN II. ĐÚNG / SAI (4,0 điểm)",
+        instruction: "Mỗi câu 1 điểm — Đúng 1 ý được 0,25 điểm.",
         questions: [
-          { type:"tf", points:0.5, q:"Cho f(x) = 2cos x + x. Đạo hàm f'(x) = −2sin x + 1.", correct:true },
-          { type:"tf", points:0.5, q:"Cho f(x) = 2cos x + x trên [0;π/2]. Nghiệm của f'(x) = 0 là x = π/6.", correct:true },
-          { type:"tf", points:0.5, q:"Ô tô tăng tốc với vận tốc v(t) = at + b (a>0), sau 12 giây nhập làn với quãng đường 180m. Giá trị b = 10.", correct:true },
-          { type:"tf", points:0.5, q:"Thiên thạch chuyển động từ M(6;20;0) đến N(−6;−12;16). Một VTCP của đường thẳng MN là (12;32;16).", correct:false }
+          { type:"tf", points:1, q:"Cho hàm số f(x) = 2cos x + x. Đạo hàm f'(x) = −2sin x + 1.", correct:true },
+          { type:"tf", points:1, q:"Cho hàm số f(x) = 2cos x + x trên [0;π/2]. Nghiệm của f'(x) = 0 là x = π/6.", correct:true },
+          { type:"tf", points:1, q:"Một ô tô tăng tốc với vận tốc v(t) = at + b (a>0), sau 12 giây nhập làn cao tốc với quãng đường 180m. Khẳng định: Giá trị b = 10.", correct:true },
+          { type:"tf", points:1, q:"Thiên thạch chuyển động từ M(6;20;0) đến N(−6;−12;16). Một VTCP của đường thẳng MN là (12;32;16).", correct:false }
         ]
       },
       {
-        name: "PHẦN III. TRẢ LỜI NGẮN",
-        instruction: "Điền đáp án vào ô trống (mỗi câu ~0,67 điểm).",
+        name: "PHẦN III. TRẢ LỜI NGẮN (3,0 điểm)",
+        instruction: "Mỗi câu 0,5 điểm — Điền đáp án vào ô trống.",
         questions: [
-          { type:"short", points:0.67, q:"Lăng trụ đứng ABC.A'B'C' có AB=5, BC=6, CA=7. Khoảng cách giữa AA' và BC (làm tròn 1 chữ số thập phân):", correct:["4.9","4,9"], placeholder:"Nhập số" },
-          { type:"short", points:0.67, q:"Doanh nghiệp sản xuất x sản phẩm (1≤x≤500). Doanh thu F(x) = x³ − 1999x² + 1001000x + 250000, chi phí BQ G(x) = x + 1000 + 250000/x. Số sản phẩm để lợi nhuận lớn nhất:", correct:["500"], placeholder:"Nhập số" },
-          { type:"short", points:0.66, q:"Hộp I: 6 đỏ, 4 vàng. Hộp II: 7 đỏ, 3 vàng. Lấy 1 bóng hộp I bỏ sang hộp II, sau đó lấy 1 bóng hộp II. Xác suất bóng lấy ra là bóng đỏ được chuyển từ hộp I sang (làm tròn 2 chữ số TP):", correct:["0.27","0,27"], placeholder:"Nhập số" }
+          { type:"short", points:0.5, q:"Cho lăng trụ đứng ABC.A'B'C' có AB=5, BC=6, CA=7. Khoảng cách giữa AA' và BC (làm tròn 1 chữ số TP):", correct:["4.9","4,9"], placeholder:"Nhập số" },
+          { type:"short", points:0.5, q:"Doanh nghiệp sản xuất x sản phẩm (1≤x≤500). Doanh thu F(x) = x³ − 1999x² + 1001000x + 250000, chi phí BQ G(x) = x + 1000 + 250000/x. Số sản phẩm để lợi nhuận lớn nhất:", correct:["500"], placeholder:"Nhập số" },
+          { type:"short", points:0.5, q:"Hộp I: 6 đỏ, 4 vàng. Hộp II: 7 đỏ, 3 vàng. Lấy 1 bóng hộp I bỏ sang hộp II, sau đó lấy 1 bóng hộp II. Xác suất bóng lấy ra là bóng đỏ được chuyển từ hộp I sang (làm tròn 2 chữ số TP):", correct:["0.27","0,27"], placeholder:"Nhập số" },
+          { type:"short", points:0.5, q:"Tính ∫₀¹ 2x dx:", correct:["1"], placeholder:"Nhập số" },
+          { type:"short", points:0.5, q:"Giá trị của log₂8 là:", correct:["3"], placeholder:"Nhập số" },
+          { type:"short", points:0.5, q:"Số phức z = 3 + 4i có môđun bằng:", correct:["5"], placeholder:"Nhập số" }
         ]
       }
     ]
   },
   {
     id: "van-de1", subjectId: "van",
-    title: "Đề thi thử Ngữ văn — Số 1",
-    description: "Cấu trúc: Đọc hiểu (4,0đ) + Làm văn (6,0đ)",
+    title: "Đề thi thử THPT Quốc gia — Ngữ văn số 1",
+    description: "Cấu trúc 2025: Đọc hiểu (4đ) + Nghị luận xã hội (2đ) + Nghị luận văn học (4đ) — 120 phút",
     duration: 120, totalPoints: 10,
     sections: [
       {
@@ -453,7 +622,7 @@ const EXAMS = [
           { type:"mcq", points:1, q:"Nếu không có thế hệ nghệ sĩ trước đó, nghệ sĩ thế hệ sau sẽ ra sao?", options:["Vẫn sáng tạo tốt","Không có nguồn lực để sáng tạo và khai phá","Có nhiều cơ hội hơn","Được tự do hơn"], correct:1 },
           { type:"mcq", points:1, q:"Việc liên tưởng dòng sông với lịch sử sáng tạo nghệ thuật có tác dụng gì?", options:["Làm câu văn ngắn gọn","Tạo liên tưởng độc đáo, nhấn mạnh tính liên tục, kế thừa","Làm khó hiểu vấn đề","Không có tác dụng đặc biệt"], correct:1 },
           { type:"essay", points:1, q:"Từ đoạn trích, rút ra bài học gì về sự kế thừa và sáng tạo? (Viết ngắn 2-3 câu)",
-            modelAnswer:"Gợi ý: Mỗi thế hệ cần kế thừa giá trị tốt đẹp của thế hệ đi trước, đồng thời không ngừng khai phá, sáng tạo để tạo dấu ấn riêng, góp phần làm phong phú thêm dòng chảy văn hóa – nghệ thuật của dân tộc và nhân loại." }
+            modelAnswer:"Gợi ý: Mỗi thế hệ cần kế thừa những giá trị tốt đẹp của thế hệ đi trước, đồng thời không ngừng khai phá, sáng tạo để tạo nên dấu ấn riêng, góp phần làm phong phú thêm dòng chảy văn hóa – nghệ thuật của dân tộc và nhân loại." }
         ]
       },
       {
@@ -464,50 +633,52 @@ const EXAMS = [
             type:"essay", points:2,
             q:"(2,0 điểm) Viết đoạn văn nghị luận (khoảng 200 chữ) trình bày suy nghĩ về ý nghĩa của việc tôn trọng cá tính.",
             modelAnswer:`Gợi ý dàn ý:
-- Giải thích: Cá tính là nét riêng biệt của mỗi người; tôn trọng cá tính là chấp nhận sự khác biệt.
+- Giải thích: Cá tính là nét riêng biệt, độc đáo của mỗi người; tôn trọng cá tính là chấp nhận, không áp đặt, không phán xét sự khác biệt.
 - Ý nghĩa:
-  + Giúp cá nhân phát huy tiềm năng, tự tin khẳng định bản thân.
-  + Xã hội đa dạng, phong phú về ý tưởng, sáng tạo.
+  + Giúp mỗi cá nhân phát huy tiềm năng, tự tin khẳng định bản thân.
+  + Xã hội trở nên đa dạng, phong phú về ý tưởng, sáng tạo.
   + Giảm áp lực đồng trang lứa, xây dựng môi trường sống lành mạnh.
-  + Thúc đẩy sáng tạo, đổi mới trong học tập và lao động.
-- Phản biện: Tôn trọng cá tính không đồng nghĩa cổ xúy hành vi lệch chuẩn, vi phạm đạo đức.
-- Liên hệ: Mỗi người cần học cách chấp nhận sự khác biệt và dám sống với cá tính của mình.` },
+- Phản biện: Tôn trọng cá tính không đồng nghĩa với cổ xúy hành vi lệch chuẩn, vi phạm đạo đức.
+- Liên hệ: Mỗi người cần học cách chấp nhận sự khác biệt của người khác, đồng thời dám sống với cá tính của mình.` },
           {
             type:"essay", points:4,
-            q:"(4,0 điểm) Phân tích khổ thơ đầu bài 'Mùa xuân nho nhỏ' (Thanh Hải):\n\nMọc giữa dòng sông xanh\nMột bông hoa tím biếc\nƠi con chim chiền chiện\nHót chi mà vang trời\nTừng giọt long lanh rơi\nTôi đưa tay tôi hứng",
+            q:"(4,0 điểm) Cảm nhận của anh/chị về đoạn thơ sau trong bài 'Tây Tiến' của Quang Dũng:\n\nSông Mã xa rồi Tây Tiến ơi!\nNhớ về rừng núi nhớ chơi vơi\nSài Khao sương lấp đoàn quân mỏi\nMường Lát hoa về trong đêm hơi\n\nDốc lên khúc khuỷu dốc thăm thẳm\nHeo hút cồn mây súng ngửi trời\nNgàn thước lên cao, ngàn thước xuống\nNhà ai Pha Luông mưa xa khơi",
             modelAnswer:`Gợi ý dàn ý:
-1. Mở bài: Giới thiệu Thanh Hải, bài thơ "Mùa xuân nho nhỏ", khổ thơ đầu.
+1. Mở bài: Giới thiệu Quang Dũng, bài "Tây Tiến" và đoạn thơ.
 2. Thân bài:
-- Bức tranh mùa xuân xứ Huế: dòng sông xanh, bông hoa tím biếc, tiếng chim chiền chiện — gam màu tươi sáng, đặc trưng xứ Huế.
-- Nghệ thuật:
-  + Đảo ngữ "Mọc giữa dòng sông xanh" — nhấn mạnh sức sống mãnh liệt.
-  + Câu cảm thán "Ơi", "Hót chi mà" — giọng điệu thân thương.
-  + Ẩn dụ chuyển đổi cảm giác "Từng giọt long lanh rơi / Tôi đưa tay tôi hứng" — tiếng chim hữu hình thành giọt, thể hiện sự nâng niu.
-- Cảm xúc: say mê, yêu thiên nhiên, yêu quê hương tha thiết.
-3. Kết bài: Khẳng định vẻ đẹp của khổ thơ; liên hệ bản thân.` }
+- Nỗi nhớ da diết: "Sông Mã xa rồi Tây Tiến ơi!" — tiếng gọi cảm thán, nỗi nhớ "chơi vơi" lan tỏa.
+- Thiên nhiên Tây Bắc hùng vĩ, hiểm trở:
+  + "Sài Khao sương lấp", "Mường Lát hoa về" — hình ảnh thơ mộng mà dữ dội.
+  + Điệp từ "dốc" + từ láy "khúc khuỷu", "thăm thẳm" — địa hình hiểm trở.
+  + Nhân hóa "súng ngửi trời" — tầm vóc người lính, tinh thần lạc quan.
+  + Câu thơ "Ngàn thước lên cao, ngàn thước xuống" — đối lập, gợi độ cao dốc.
+  + "Nhà ai Pha Luông mưa xa khơi" — 8 chữ toàn thanh bằng, âm điệu nhẹ nhàng, mở ra không gian mênh mang.
+- Nghệ thuật: bút pháp lãng mạn, giàu chất họa, kết hợp tả và cảm xúc.
+- Tư tưởng: Ca ngợi vẻ đẹp hào hùng, bi tráng của người lính Tây Tiến và tình yêu thiên nhiên, quê hương của tác giả.
+3. Kết bài: Đánh giá vẻ đẹp của đoạn thơ, liên hệ bản thân.` }
         ]
       }
     ]
   },
   {
     id: "anh-de1", subjectId: "anh",
-    title: "Đề thi thử Tiếng Anh — Số 1",
-    description: "24 câu trắc nghiệm (0,42 điểm/câu)",
+    title: "Đề thi thử THPT Quốc gia — Tiếng Anh số 1",
+    description: "24 câu trắc nghiệm (rút gọn từ 40 câu đề thật) — 60 phút",
     duration: 60, totalPoints: 10,
     sections: [
       {
         name: "PHẦN TRẮC NGHIỆM",
         instruction: "Chọn đáp án đúng nhất.",
         questions: [
-          { type:"mcq", points:0.42, q:"Brett: 'Let\\'s eat out tonight.' — Julie: '______.'", options:["Here you are","Yes, it\\'s true","That\\'s a great idea","Yes, I do"], correct:2 },
-          { type:"mcq", points:0.42, q:"Sophia: 'I think we should use solar energy.' — Jenny: '______ It\\'s clean and renewable.'", options:["You\\'re wrong","Of course not","I don\\'t think so","I agree with you"], correct:3 },
+          { type:"mcq", points:0.42, q:"Brett: 'Let us eat out tonight.' — Julie: '______.'", options:["Here you are","Yes, it is true","That is a great idea","Yes, I do"], correct:2 },
+          { type:"mcq", points:0.42, q:"Sophia: 'I think we should use solar energy.' — Jenny: '______ It is clean and renewable.'", options:["You are wrong","Of course not","I do not think so","I agree with you"], correct:3 },
           { type:"mcq", points:0.42, q:"The child took a more ______ role in his learning.", options:["activate","activity","active","actively"], correct:2 },
           { type:"mcq", points:0.42, q:"The plants ______ by my brother every day.", options:["watered","are watering","water","are watered"], correct:3 },
-          { type:"mcq", points:0.42, q:"My aunt doesn\\'t like to go out at ______ night.", options:["an","the","(no article)","a"], correct:2 },
+          { type:"mcq", points:0.42, q:"My aunt does not like to go out at ______ night.", options:["an","the","(no article)","a"], correct:2 },
           { type:"mcq", points:0.42, q:"A good way for parents and children to get closer is to ______ housework together.", options:["do","take","turn","make"], correct:0 },
           { type:"mcq", points:0.42, q:"The teachers in our school are very helpful and kind ______ us.", options:["at","to","for","in"], correct:1 },
           { type:"mcq", points:0.42, q:"Lucy was ______ runner in the competition.", options:["faster","the fastest","fastest","faster than"], correct:1 },
-          { type:"mcq", points:0.42, q:"The boy is practicing the piano, ______?", options:["doesn\\'t he","was he","he was","isn\\'t he"], correct:0 },
+          { type:"mcq", points:0.42, q:"The boy is practicing the piano, ______?", options:["does not he","was he","he was","is not he"], correct:0 },
           { type:"mcq", points:0.42, q:"I stopped ______ in order to get something to eat.", options:["working","worked","to work","to working"], correct:0 },
           { type:"mcq", points:0.42, q:"Thanh ______ tea when his sister came home.", options:["is making","has made","makes","was making"], correct:3 },
           { type:"mcq", points:0.42, q:"Our friends usually ______ early in the morning.", options:["look for","turn off","put on","wake up"], correct:3 },
@@ -516,12 +687,12 @@ const EXAMS = [
           { type:"mcq", points:0.42, q:"The mass media serves as a powerful means of distributing information. (CLOSEST)", options:["bad","great","weak","cheap"], correct:1 },
           { type:"mcq", points:0.42, q:"The boy is unable to provide a good reason. (CLOSEST)", options:["take","perform","give","allow"], correct:2 },
           { type:"mcq", points:0.42, q:"Despite their striking differences, they have developed a good relationship. (OPPOSITE)", options:["major","clear","small","big"], correct:2 },
-          { type:"mcq", points:0.42, q:"Choose the word whose underlined part differs: nature / photo / artist / winter", options:["nature","photo","artist","winter"], correct:0 },
+          { type:"mcq", points:0.42, q:"Choose the word whose underlined part differs in pronunciation: nature / photo / artist / winter", options:["nature","photo","artist","winter"], correct:0 },
           { type:"mcq", points:0.42, q:"Choose the word with different stress: possible / national / creative / different", options:["possible","national","creative","different"], correct:2 },
           { type:"mcq", points:0.42, q:"What is the main idea of the passage about water pollution?", options:["Rubbish on land is more dangerous than in the sea.","Water pollution has serious effects on the environment and animals.","People should stop using plastic bottles.","Beaches are always covered in rubbish."], correct:1 },
-          { type:"mcq", points:0.42, q:"According to the passage, what can happen when birds eat plastic bottles?", options:["They get stronger.","They can\\'t eat anything else.","They fly away.","They drink more water."], correct:1 },
+          { type:"mcq", points:0.42, q:"According to the passage, what can happen when birds eat plastic bottles?", options:["They get stronger.","They cannot eat anything else.","They fly away.","They drink more water."], correct:1 },
           { type:"mcq", points:0.42, q:"The word 'ruins' in the passage is closest in meaning to:", options:["protects","destroys","cleans","improves"], correct:1 },
-          { type:"mcq", points:0.42, q:"What does the author imply about people\\'s reaction to rubbish in the sea?", options:["They react more strongly than on land.","They often ignore it.","They always clean it up.","They never see it."], correct:1 },
+          { type:"mcq", points:0.42, q:"What does the author imply about people's reaction to rubbish in the sea?", options:["They react more strongly than on land.","They often ignore it.","They always clean it up.","They never see it."], correct:1 },
           { type:"mcq", points:0.42, q:"Which is NOT mentioned as an effect of water pollution?", options:["Beautiful beaches covered in rubbish.","Plastic bags floating in rivers and lakes.","Fish dying because of chemicals.","Animals mistaking plastic for food."], correct:2 }
         ]
       }
@@ -530,11 +701,11 @@ const EXAMS = [
 ];
 
 /* ============================================================
-   STORAGE (có try/catch để tránh lỗi)
+   STORAGE
    ============================================================ */
-const STORAGE_KEY = "on-thi-10-progress";
-const EXAM_RESULTS_KEY = "on-thi-10-exam-results";
-const SESSION_PREFIX = "on-thi-10-session-";
+const STORAGE_KEY = "thpt-qg-progress";
+const EXAM_RESULTS_KEY = "thpt-qg-exam-results";
+const SESSION_PREFIX = "thpt-qg-session-";
 
 function loadProgress() {
   try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : { lessons:{}, quizzes:{} }; }
@@ -602,9 +773,9 @@ function renderHome() {
   app.innerHTML = `
     <section class="hero">
       <div class="container">
-        <span class="hero-badge">🌸 Luyện thi tuyển sinh lớp 10</span>
-        <h1>Chinh phục kỳ thi vào 10<br>cùng <span class="accent">lộ trình rõ ràng</span></h1>
-        <p>Học lý thuyết, luyện trắc nghiệm, làm đề thi thử có tính giờ và theo dõi tiến độ.</p>
+        <span class="hero-badge">🌸 Luyện thi THPT Quốc gia 2026</span>
+        <h1>Chinh phục kỳ thi THPT Quốc gia<br>cùng <span class="accent">lộ trình rõ ràng</span></h1>
+        <p>Học lý thuyết lớp 12, luyện trắc nghiệm, làm đề thi thử có tính giờ theo cấu trúc 2025 và theo dõi tiến độ.</p>
         <div class="hero-actions">
           <button class="btn btn-primary btn-lg" id="start-btn">Bắt đầu học ngay 🌸</button>
           <a href="#/exams" class="btn btn-outline btn-lg">📝 Làm đề thi thử</a>
@@ -827,7 +998,7 @@ function renderExams() {
   app.innerHTML = `
     <div class="container">
       <a href="#/" class="back-link">← Trang chủ</a>
-      <h1 class="page-title">📝 Đề thi thử</h1>
+      <h1 class="page-title">📝 Đề thi thử THPT Quốc gia</h1>
       <p class="muted">Làm bài trong thời gian quy định. Kết quả được lưu vào tiến độ.</p>
       <h2 class="section-title">Chọn đề thi</h2>
       <div class="card-grid">
@@ -866,7 +1037,7 @@ function renderExams() {
 }
 
 /* ============================================================
-   RENDER — LÀM BÀI THI (ĐÃ SỬA LỖI ĐÁNH SỐ CÂU)
+   RENDER — LÀM BÀI THI
    ============================================================ */
 function renderExam(examId) {
   const exam = findExam(examId);
@@ -874,28 +1045,23 @@ function renderExam(examId) {
 
   const totalQ = exam.sections.reduce((s, sec) => s + sec.questions.length, 0);
 
-  // Session management - reset nếu data đổi
   let session = getExamSession(examId);
   if (!session || session.questionCount !== totalQ) {
     session = { startTime: Date.now(), answers: {}, questionCount: totalQ };
     saveExamSession(examId, session);
   }
 
-  // Check thời gian
   const elapsed = (Date.now() - session.startTime) / 1000;
   if (exam.duration * 60 - elapsed <= 0) { submitExam(exam, session, true); return; }
 
-  // Build HTML — dùng biến đếm tuần tự (KHÔNG dùng findIndex nữa)
   let globalIdx = 0;
   const sectionsHTML = exam.sections.map(sec => {
     const questionsHTML = sec.questions.map(q => {
       globalIdx++;
       const name = "q" + globalIdx;
-      const idx = globalIdx;
       const savedVal = session.answers[name] || "";
-      return renderExamQuestion(q, name, idx, savedVal);
+      return renderExamQuestion(q, name, globalIdx, savedVal);
     }).join("");
-
     return `<div class="exam-section">
       <div class="exam-section-head">
         <h2>${esc(sec.name)}</h2>
@@ -911,7 +1077,6 @@ function renderExam(examId) {
       <a href="#/exams" class="back-link">← Danh sách đề</a>
       <h1 class="page-title">${exam.title}</h1>
       <p class="muted">${exam.description}</p>
-
       <div class="exam-timer-bar">
         <div class="timer-info">
           <div><strong>⏱ Thời gian còn lại</strong><div class="sub">Bài thi tự nộp khi hết giờ</div></div>
@@ -919,7 +1084,6 @@ function renderExam(examId) {
         <div class="timer" id="timer">--:--</div>
         <button type="button" class="btn btn-sakura" id="submit-top">Nộp bài</button>
       </div>
-
       <form id="exam-form">
         ${sectionsHTML}
         <button type="submit" class="btn btn-sakura btn-block btn-lg" style="margin-bottom:3rem">📤 Nộp bài</button>
@@ -927,20 +1091,16 @@ function renderExam(examId) {
     </div>
   `;
 
-  // Sync TF button classes (fallback cho :has())
   document.querySelectorAll('.tf-btn input').forEach(input => {
     input.addEventListener('change', () => {
       const parent = input.closest('.tf-btn');
       parent.parentElement.querySelectorAll('.tf-btn').forEach(b => {
         b.classList.remove('selected-true', 'selected-false');
       });
-      if (input.checked) {
-        parent.classList.add(input.value === 'true' ? 'selected-true' : 'selected-false');
-      }
+      if (input.checked) parent.classList.add(input.value === 'true' ? 'selected-true' : 'selected-false');
     });
   });
 
-  // Auto-save khi nhập
   const form = document.getElementById("exam-form");
   form.addEventListener("input", (e) => {
     const t = e.target;
@@ -951,7 +1111,6 @@ function renderExam(examId) {
     saveExamSession(examId, s);
   });
 
-  // Timer
   const timerEl = document.getElementById("timer");
   const tick = () => {
     const s = getExamSession(examId);
@@ -965,7 +1124,6 @@ function renderExam(examId) {
   tick();
   activeTimerId = setInterval(tick, 1000);
 
-  // Submit handlers
   const handleSubmit = (e) => {
     if (e) e.preventDefault();
     const s = getExamSession(examId);
@@ -977,7 +1135,6 @@ function renderExam(examId) {
   document.getElementById("submit-top").addEventListener("click", handleSubmit);
 }
 
-/* Render một câu hỏi trong đề */
 function renderExamQuestion(q, name, idx, savedVal) {
   const header = `<div class="question-header">
     <span class="question-num">Câu ${idx}</span>
@@ -1035,7 +1192,6 @@ function submitExam(exam, session, autoSubmitted) {
   clearActiveTimer();
   if (!session) return;
 
-  // Duyệt tuần tự như khi render
   let idx = 0;
   let autoScore = 0;
   const details = [];
@@ -1098,7 +1254,6 @@ function renderExamResult(resultId) {
     <div class="container narrow">
       <a href="#/exams" class="back-link">← Danh sách đề</a>
       <h1 class="page-title">📊 Kết quả: ${exam.title}</h1>
-
       <div class="exam-result-summary">
         <div class="label">Điểm của bạn</div>
         <div class="big-score">${finalScore.toFixed(1)}<small>/${r.maxScore}</small></div>
@@ -1109,7 +1264,6 @@ function renderExamResult(resultId) {
         </div>
       </div>
       ${r.autoSubmitted ? `<p class="muted" style="margin-bottom:1rem">⏱ Bài đã được tự động nộp khi hết giờ.</p>` : ""}
-
       <h2 class="section-title">Chi tiết bài làm</h2>
       ${r.details.map(d => {
         if (d.type === "essay") {
@@ -1159,7 +1313,6 @@ function renderExamResult(resultId) {
           ${ansBlock}
         </div>`;
       }).join("")}
-
       <div style="display:flex; gap:.75rem; flex-wrap:wrap; margin: 2rem 0 3rem">
         <a href="#/exam/${exam.id}" class="btn btn-sakura">🔄 Làm lại đề này</a>
         <a href="#/exams" class="btn btn-outline">📝 Xem đề khác</a>
@@ -1168,7 +1321,6 @@ function renderExamResult(resultId) {
     </div>
   `;
 
-  // Self-assessment
   document.querySelectorAll('select[data-essay-idx]').forEach(sel => {
     sel.addEventListener("change", () => {
       const i = Number(sel.dataset.essayIdx);
@@ -1291,7 +1443,7 @@ function renderProgress() {
 }
 
 /* ============================================================
-   ROUTER — ĐÃ ĐƠN GIẢN HÓA
+   ROUTER
    ============================================================ */
 const app = document.getElementById("app");
 
@@ -1308,11 +1460,8 @@ function router() {
   const path = location.hash.replace(/^#/, "") || "/";
   const seg = path.split("/").filter(Boolean);
 
-  try {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  } catch (e) {
-    window.scrollTo(0, 0);
-  }
+  try { window.scrollTo({ top: 0, behavior: "instant" }); }
+  catch (e) { window.scrollTo(0, 0); }
 
   if (seg.length === 0) renderHome();
   else if (seg[0] === "subject" && seg[1]) renderSubject(seg[1]);
