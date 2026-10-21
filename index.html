@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ôn Thi Vào 10 — Học thông minh, thi hiệu quả</title>
+<style>
+  :root {
+    --primary:#4f46e5;--primary-dark:#4338ca;--primary-light:#eef2ff;
+    --sakura:#f472b6;--sakura-light:#fce7f3;--sakura-soft:#fdf2f8;
+    --success:#16a34a;--success-light:#dcfce7;
+    --danger:#dc2626;--danger-light:#fee2e2;
+    --warning:#f59e0b;--warning-light:#fef3c7;
+    --text:#0f172a;--text-muted:#64748b;--bg:#fdfbfd;--card:#fff;--border:#e2e8f0;
+    --radius:14px;--shadow:0 1px 3px rgba(0,0,0,.06);
+    --shadow-lg:0 10px 30px rgba(79,70,229,.12);
+    --shadow-sakura:0 10px 30px rgba(244,114,182,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+  .narrow{max-width:820px}
+
+  /* SAKURA */
+  .petals-container{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+  .petal{position:absolute;top:-30px;background:linear-gradient(135deg,#fecdd3,#f9a8d4 60%,#f472b6);border-radius:150% 0 150% 0;box-shadow:0 0 6px rgba(249,168,212,.35);animation:fall linear infinite;opacity:0}
+  .petal-alt{background:linear-gradient(135deg,#fbcfe8,#f9a8d4 50%,#f0abfc);border-radius:0 150% 0 150%}
+  @keyframes fall{0%{transform:translateY(0) translateX(0) rotate(0);opacity:0}8%{opacity:1}92%{opacity:.75}100%{transform:translateY(110vh) translateX(var(--drift,60px)) rotate(720deg);opacity:0}}
+  @media(prefers-reduced-motion:reduce){.petal{display:none}}
+
+  /* HEADER */
+  .site-header{background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+  .site-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,transparent,var(--sakura),var(--primary),var(--sakura),transparent);opacity:.55}
+  .header-inner{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1.25rem;max-width:1080px;margin:0 auto;position:relative}
+  .logo{font-weight:800;font-size:1.1rem;color:var(--primary);display:flex;align-items:center;gap:.45rem}
+  .flower-icon{display:inline-block;animation:sway 3.5s ease-in-out infinite}
+  @keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+  .logo span{color:var(--text)}
+  nav.main-nav{display:flex;gap:.25rem}
+  nav.main-nav a{padding:.5rem .9rem;border-radius:8px;font-weight:600;font-size:.92rem;color:var(--text-muted);transition:.15s}
+  nav.main-nav a:hover{color:var(--primary);background:var(--primary-light)}
+  nav.main-nav a.active{color:var(--primary);background:var(--primary-light);box-shadow:inset 0 -2px 0 var(--sakura)}
+  .header-sakura{position:absolute;top:4px;font-size:1.4rem;opacity:.55;animation:floatF 6s ease-in-out infinite;pointer-events:none}
+  .header-sakura.left{left:8px}.header-sakura.right{right:8px;animation-delay:1.5s}
+  @keyframes floatF{0%,100%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(-4px) rotate(10deg)}}
+
+  /* BUTTONS */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.6rem 1.15rem;border-radius:10px;font-weight:600;font-size:.92rem;border:none;cursor:pointer;transition:.18s;font-family:inherit;text-decoration:none}
+  .btn:disabled{opacity:.65;cursor:not-allowed}
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-primary:hover:not(:disabled){background:var(--primary-dark);transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+  .btn-outline{background:#fff;color:var(--primary);border:1.5px solid var(--primary)}
+  .btn-outline:hover:not(:disabled){background:var(--primary-light)}
+  .btn-sakura{background:linear-gradient(135deg,#f472b6,#db2777);color:#fff;box-shadow:0 4px 12px rgba(244,114,182,.35)}
+  .btn-sakura:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 20px rgba(244,114,182,.45)}
+  .btn-success{background:var(--success);color:#fff}
+  .btn-danger{background:var(--danger);color:#fff}
+  .btn-danger:hover{background:#b91c1c}
+  .btn-lg{padding:.8rem 1.6rem;font-size:1rem}
+  .btn-sm{padding:.45rem .85rem;font-size:.85rem}
+  .btn-block{width:100%}
+
+  /* HERO */
+  .hero{background:radial-gradient(ellipse at 20% 10%,rgba(249,168,212,.35) 0,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(196,181,253,.35) 0,transparent 55%),radial-gradient(ellipse at 50% 100%,rgba(251,207,232,.4) 0,transparent 60%),linear-gradient(180deg,#fdf2f8 0,#eef2ff 50%,#f8fafc 100%);padding:4.5rem 1rem 3.5rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before,.hero::after{content:"🌸";position:absolute;font-size:5rem;opacity:.18;pointer-events:none;animation:floatF 8s ease-in-out infinite}
+  .hero::before{top:8%;left:4%;transform:rotate(-15deg)}
+  .hero::after{bottom:10%;right:5%;font-size:6rem;animation-delay:2s}
+  .hero-badge{display:inline-flex;align-items:center;gap:.35rem;background:#fff;color:var(--sakura);padding:.4rem 1rem;border-radius:999px;font-size:.82rem;font-weight:700;border:1.5px solid #fbcfe8;margin-bottom:1.2rem;box-shadow:0 4px 14px rgba(244,114,182,.15);animation:floatIn .7s ease-out}
+  .hero h1{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.2;margin-bottom:1rem;letter-spacing:-.02em;animation:floatIn .7s ease-out .1s both}
+  .hero h1 .accent{background:linear-gradient(135deg,#f472b6,#a855f7,#4f46e5);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p{color:var(--text-muted);max-width:560px;margin:0 auto 1.8rem;font-size:1.05rem;animation:floatIn .7s ease-out .2s both}
+  .hero-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;animation:floatIn .7s ease-out .3s both}
+  @keyframes floatIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  #app>*{animation:fadeIn .45s ease-out}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+  /* SECTION TITLE */
+  .section-title{font-size:1.35rem;margin:2.5rem 0 1rem;letter-spacing:-.01em;position:relative;padding-left:1rem}
+  .section-title::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:70%;background:linear-gradient(180deg,var(--sakura),var(--primary));border-radius:4px}
+
+  /* CARDS */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:1rem}
+  .subject-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:.25s;display:block;position:relative;overflow:hidden}
+  .subject-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent,var(--primary));transition:height .25s}
+  .subject-card::after{content:"🌸";position:absolute;top:-18px;right:-18px;font-size:3.5rem;opacity:0;transition:.3s;transform:rotate(-15deg);pointer-events:none}
+  .subject-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-sakura);border-color:var(--accent,var(--primary))}
+  .subject-card:hover::before{height:6px}
+  .subject-card:hover::after{opacity:.35;top:-8px;right:-8px}
+  .subject-icon{font-size:2.4rem;margin-bottom:.6rem}
+  .subject-card h3{font-size:1.2rem;margin-bottom:.25rem}
+  .subject-card .muted{font-size:.88rem;margin-bottom:1rem}
+  .mini-progress{height:6px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-bottom:.5rem}
+  .mini-progress>div{height:100%;background:var(--accent,var(--primary));border-radius:999px;transition:width .5s}
+
+  /* QUICK PROGRESS */
+  .quick-progress{background:linear-gradient(135deg,#fff,#fdf2f8);border:1px solid #fbcfe8;border-radius:var(--radius);padding:1.75rem;margin:2rem 0 3rem;display:flex;gap:2rem;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden}
+  .quick-progress::after{content:"🌸";position:absolute;right:-10px;bottom:-20px;font-size:4rem;opacity:.15;transform:rotate(-20deg);pointer-events:none}
+  .quick-stats{display:flex;gap:1.5rem;flex-wrap:wrap}
+  .quick-stats .stat{text-align:center}
+  .quick-stats .stat strong{display:block;font-size:1.6rem;background:linear-gradient(135deg,var(--sakura),var(--primary));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+  .quick-stats .stat span{font-size:.8rem;color:var(--text-muted)}
+
+  /* COMMON */
+  .back-link{display:inline-block;margin:1.5rem 0 1rem;color:var(--primary);font-weight:600;font-size:.92rem}
+  .back-link:hover{text-decoration:underline}
+  .page-title{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:.5rem;letter-spacing:-.01em}
+  .muted{color:var(--text-muted)}
+  .small{font-size:.82rem}
+
+  /* SUBJECT HEADER */
+  .subject-header{display:flex;gap:1.5rem;align-items:center;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;margin:1rem 0 2rem;border-left:5px solid var(--accent,var(--primary));position:relative;overflow:hidden}
+  .subject-header::after{content:"🌸";position:absolute;right:1rem;top:50%;transform:translateY(-50%) rotate(-15deg);font-size:5rem;opacity:.08;pointer-events:none}
+  .subject-icon-lg{font-size:3rem;line-height:1}
+  .subject-header h1{font-size:1.7rem;margin-bottom:.2rem}
+  .subject-progress-line{margin-top:.75rem;max-width:320px}
+  .progress-bar{height:9px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-bottom:.35rem}
+  .progress-fill{height:100%;background:var(--primary);border-radius:999px;transition:width .5s}
+
+  /* LESSON */
+  .lesson-list{display:flex;flex-direction:column;gap:.75rem;margin-bottom:3rem}
+  .lesson-item{display:flex;align-items:center;gap:1rem;background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;transition:.2s}
+  .lesson-item:hover{border-color:#c7d2fe;box-shadow:0 4px 16px rgba(244,114,182,.12);transform:translateX(2px)}
+  .lesson-item.done{border-left:4px solid var(--success)}
+  .lesson-index{width:40px;height:40px;flex-shrink:0;border-radius:10px;background:linear-gradient(135deg,var(--primary-light),var(--sakura-light));color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem}
+  .lesson-info{flex:1;min-width:0}
+  .lesson-info h3{font-size:1.02rem;margin-bottom:.3rem}
+  .lesson-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+  .lesson-actions{display:flex;gap:.5rem;flex-shrink:0}
+
+  /* BADGES */
+  .badge{display:inline-block;padding:.18rem .55rem;border-radius:6px;font-size:.74rem;font-weight:700}
+  .badge-success{background:var(--success-light);color:var(--success)}
+  .badge-muted{background:#f1f5f9;color:var(--text-muted)}
+  .badge-info{background:var(--sakura-light);color:var(--sakura)}
+  .badge-warning{background:var(--warning-light);color:#b45309}
+  .badge-danger{background:var(--danger-light);color:var(--danger)}
+
+  .lesson-body{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:2rem;margin:1rem 0 1.5rem;position:relative;overflow:hidden}
+  .lesson-body::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--sakura),var(--primary),var(--sakura));opacity:.7}
+  .lesson-body h3{font-size:1.15rem;margin:1.5rem 0 .6rem;color:var(--primary-dark);padding-left:.6rem;border-left:3px solid var(--sakura)}
+  .lesson-body h3:first-child{margin-top:0}
+  .lesson-body p{margin-bottom:.75rem}
+  .lesson-body ul,.lesson-body ol{margin:.5rem 0 1rem 1.4rem}
+  .lesson-body li{margin-bottom:.35rem}
+  .lesson-body strong{color:#1e1b4b}
+  .lesson-body .example{background:linear-gradient(135deg,var(--sakura-soft),#f5f3ff);border-left:4px solid var(--sakura);padding:.8rem 1rem;border-radius:8px;margin:1rem 0;font-size:.95rem}
+  .lesson-footer{display:flex;gap:.75rem;flex-wrap:wrap;padding-bottom:3rem}
+
+  /* QUIZ NHANH */
+  .quiz-form{margin:1.5rem 0 2rem}
+  .quiz-question{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;transition:.2s}
+  .quiz-question:focus-within{border-color:var(--sakura);box-shadow:0 0 0 3px rgba(244,114,182,.1)}
+  .quiz-prompt{font-size:1.02rem;margin-bottom:1rem}
+  .quiz-options{display:flex;flex-direction:column;gap:.5rem}
+  .quiz-option{display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;border-radius:10px;cursor:pointer;border:1.5px solid var(--border);transition:.15s;background:#fff}
+  .quiz-option:hover{border-color:#c7d2fe;background:var(--primary-light)}
+  .quiz-option input{accent-color:var(--primary);width:18px;height:18px;cursor:pointer}
+  .quiz-option.correct{background:var(--success-light);border-color:var(--success);font-weight:600}
+  .quiz-option.wrong{background:var(--danger-light);border-color:var(--danger)}
+  .quiz-option.correct::after{content:"✓";margin-left:auto;color:var(--success);font-weight:800}
+  .quiz-option.wrong::after{content:"✕";margin-left:auto;color:var(--danger);font-weight:800}
+
+  .quiz-result{background:linear-gradient(135deg,#fff,var(--sakura-soft));border:2px solid var(--sakura-light);border-radius:var(--radius);padding:1.75rem;margin-bottom:3rem;position:relative;overflow:hidden}
+  .quiz-result::after{content:"🌸";position:absolute;right:-15px;bottom:-15px;font-size:5rem;opacity:.12;transform:rotate(-20deg);pointer-events:none}
+  .result-header{display:flex;gap:1.5rem;align-items:center;margin-bottom:1.5rem;position:relative;z-index:1}
+  .result-score{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,var(--sakura),var(--primary));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;border-radius:14px;padding:.5rem 1.2rem;line-height:1.2;white-space:nowrap;border:2px solid var(--sakura-light);background-color:#fff}
+  .result-header h3{font-size:1.2rem;margin-bottom:.2rem}
+  .result-actions{display:flex;gap:.6rem;flex-wrap:wrap;position:relative;z-index:1}
+
+  /* PROGRESS */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.5rem 0 2.5rem}
+  .stat-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center;transition:.2s}
+  .stat-card:hover{transform:translateY(-2px);border-color:var(--sakura-light);box-shadow:var(--shadow-sakura)}
+  .stat-icon{font-size:1.8rem;margin-bottom:.4rem}
+  .stat-value{font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--sakura),var(--primary));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+  .stat-label{font-size:.82rem;color:var(--text-muted);margin-top:.2rem}
+  .progress-subject{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem}
+  .progress-subject-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.9rem;flex-wrap:wrap}
+  .progress-subject-head h3{font-size:1.15rem}
+  .progress-lessons{list-style:none;margin-top:1rem}
+  .progress-lessons li{display:flex;align-items:center;gap:.7rem;padding:.55rem 0;border-bottom:1px dashed #e2e8f0;font-size:.93rem}
+  .progress-lessons li:last-child{border-bottom:none}
+  .dot{width:9px;height:9px;border-radius:50%;background:#cbd5e1;flex-shrink:0}
+  .dot-done{background:var(--success);box-shadow:0 0 0 3px rgba(22,163,74,.15)}
+  .lesson-title-mini{flex:1}
+  .lesson-status{display:flex;gap:.5rem;align-items:center}
+  .quiz-score{font-size:.75rem;font-weight:800;padding:.15rem .5rem;border-radius:6px}
+  .quiz-score.good{background:var(--success-light);color:var(--success)}
+  .quiz-score.mid{background:var(--warning-light);color:#b45309}
+  .quiz-score.low{background:var(--danger-light);color:var(--danger)}
+  .danger-zone{background:#fff;border:2px dashed #fecaca;border-radius:var(--radius);padding:1.5rem;margin:2rem 0 3rem}
+  .danger-zone h3{color:var(--danger);margin-bottom:.3rem}
+  .danger-zone .btn{margin-top:1rem}
+
+  /* TOAST */
+  .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(120%);background:linear-gradient(135deg,var(--sakura),var(--primary));color:#fff;padding:.75rem 1.4rem;border-radius:10px;font-weight:600;font-size:.9rem;box-shadow:0 10px 30px rgba(244,114,182,.4);transition:transform .35s cubic-bezier(.22,1,.36,1);z-index:100}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  /* FOOTER */
+  .site-footer{text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:.85rem;border-top:1px solid var(--border);background:linear-gradient(180deg,#fff,var(--sakura-soft))}
+  .site-footer::before{content:"🌸  🌸  🌸";display:block;font-size:1rem;opacity:.4;margin-bottom:.5rem;letter-spacing:1rem}
+
+  /* EXAM */
+  .exam-card{display:block;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:.22s;position:relative;overflow:hidden}
+  .exam-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,var(--primary))}
+  .exam-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-sakura);border-color:var(--accent,var(--primary))}
+  .exam-card .exam-icon{font-size:2rem;margin-bottom:.5rem}
+  .exam-card h3{font-size:1.15rem;margin-bottom:.35rem}
+  .exam-card .exam-desc{font-size:.88rem;color:var(--text-muted);margin-bottom:1rem}
+  .exam-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+  .exam-meta .chip{background:var(--primary-light);color:var(--primary);padding:.2rem .6rem;border-radius:6px;font-size:.78rem;font-weight:700}
+  .exam-meta .chip.sakura{background:var(--sakura-light);color:var(--sakura)}
+
+  .exam-timer-bar{position:sticky;top:60px;z-index:40;background:linear-gradient(135deg,var(--primary),#6366f1);color:#fff;padding:.85rem 1.25rem;display:flex;justify-content:space-between;align-items:center;border-radius:12px;margin:1rem 0;gap:1rem;flex-wrap:wrap;box-shadow:0 6px 22px rgba(79,70,229,.3)}
+  .exam-timer-bar .timer-info{display:flex;align-items:center;gap:.75rem}
+  .exam-timer-bar .timer-info strong{font-size:.95rem}
+  .exam-timer-bar .timer-info .sub{font-size:.78rem;opacity:.8}
+  .exam-timer-bar .timer{font-family:'Courier New',monospace;font-size:1.5rem;font-weight:800;letter-spacing:.05em;background:rgba(255,255,255,.15);padding:.2rem .8rem;border-radius:8px}
+  .exam-timer-bar .timer.warning{color:#fef08a;background:rgba(220,38,38,.5);animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+  .exam-section{margin:1.5rem 0}
+  .exam-section-head{background:linear-gradient(135deg,var(--sakura-soft),#f5f3ff);border-left:4px solid var(--sakura);padding:.85rem 1.1rem;border-radius:10px;margin-bottom:.75rem}
+  .exam-section-head h2{font-size:1.1rem;color:var(--primary-dark)}
+  .exam-section-head p{font-size:.85rem;color:var(--text-muted);margin-top:.15rem}
+  .exam-passage{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:1.25rem;margin-bottom:1rem;line-height:1.8;font-size:.95rem;border-left:3px solid var(--primary);font-style:italic}
+  .exam-passage .source{display:block;text-align:right;margin-top:.5rem;font-size:.85rem;color:var(--text-muted);font-style:normal}
+
+  .exam-question{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:.85rem;transition:.15s}
+  .exam-question:focus-within{border-color:var(--sakura);box-shadow:0 0 0 3px rgba(244,114,182,.08)}
+  .question-header{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.6rem}
+  .question-num{font-weight:800;color:var(--primary);font-size:.95rem}
+  .question-points{font-size:.78rem;color:var(--text-muted)}
+  .question-text{margin-bottom:.85rem;line-height:1.55;white-space:pre-line}
+
+  .tf-buttons{display:flex;gap:.6rem;flex-wrap:wrap}
+  .tf-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.6rem 1.1rem;border-radius:10px;cursor:pointer;border:1.5px solid var(--border);background:#fff;font-weight:600;font-size:.92rem;transition:.15s}
+  .tf-btn:hover{border-color:var(--primary);background:var(--primary-light)}
+  .tf-btn input{display:none}
+  .tf-btn.selected-true{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .tf-btn.selected-false{background:var(--danger);color:#fff;border-color:var(--danger)}
+
+  .short-input{width:100%;padding:.7rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-family:inherit;font-size:.95rem;transition:.15s}
+  .short-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.1)}
+  .essay-textarea{width:100%;padding:.9rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-family:inherit;font-size:.95rem;line-height:1.6;resize:vertical;min-height:180px;transition:.15s}
+  .essay-textarea:focus{outline:none;border-color:var(--sakura);box-shadow:0 0 0 3px rgba(244,114,182,.12)}
+
+  .exam-result-summary{background:linear-gradient(135deg,#fff,var(--sakura-soft));border:2px solid var(--sakura-light);border-radius:var(--radius);padding:1.75rem;margin:1rem 0 2rem;position:relative;overflow:hidden}
+  .exam-result-summary::after{content:"🌸";position:absolute;right:-15px;bottom:-15px;font-size:6rem;opacity:.12;transform:rotate(-20deg);pointer-events:none}
+  .exam-result-summary .big-score{font-size:3.5rem;font-weight:800;background:linear-gradient(135deg,var(--sakura),var(--primary));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+  .exam-result-summary .big-score small{font-size:1.5rem;opacity:.6}
+  .exam-result-summary .label{font-size:.9rem;color:var(--text-muted);margin-bottom:.35rem}
+  .exam-result-summary .stats-row{display:flex;gap:2rem;flex-wrap:wrap;margin-top:1rem;position:relative;z-index:1}
+  .exam-result-summary .stats-row .s{text-align:center}
+  .exam-result-summary .stats-row .s strong{display:block;font-size:1.4rem;color:var(--primary)}
+  .exam-result-summary .stats-row .s span{font-size:.8rem;color:var(--text-muted)}
+
+  .review-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-bottom:.7rem}
+  .review-item.correct{border-left:4px solid var(--success)}
+  .review-item.wrong{border-left:4px solid var(--danger)}
+  .review-item.unanswered{border-left:4px solid var(--warning)}
+  .review-item .r-head{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.35rem}
+  .review-item .r-head strong{color:var(--primary)}
+  .review-item .r-answer{font-size:.9rem;margin-top:.4rem;padding:.4rem .7rem;border-radius:6px}
+  .review-item .r-answer.correct{background:var(--success-light);color:var(--success)}
+  .review-item .r-answer.wrong{background:var(--danger-light);color:var(--danger)}
+  .review-item .r-answer.unanswered{background:var(--warning-light);color:#b45309}
+
+  .essay-review{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem;margin-bottom:.7rem;border-left:4px solid var(--sakura)}
+  .essay-review .model-answer{background:var(--sakura-soft);border-radius:8px;padding:.9rem 1rem;margin:.75rem 0;font-size:.92rem;line-height:1.6;max-height:300px;overflow-y:auto;white-space:pre-line}
+  .essay-review .user-essay{background:#f8fafc;border-radius:8px;padding:.75rem 1rem;margin:.5rem 0;font-size:.9rem;line-height:1.55;max-height:200px;overflow-y:auto;white-space:pre-line}
+  .self-assess{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;padding:.75rem 1rem;background:var(--primary-light);border-radius:8px;margin-top:.75rem}
+  .self-assess label{font-weight:600;font-size:.9rem}
+  .self-assess select{padding:.4rem .7rem;border:1.5px solid var(--border);border-radius:6px;font-family:inherit;font-size:.9rem;background:#fff}
+
+  .history-item{display:flex;align-items:center;gap:1rem;padding:.85rem 1rem;background:#fff;border:1px solid var(--border);border-radius:10px;margin-bottom:.5rem;flex-wrap:wrap}
+  .history-item .h-score{font-weight:800;font-size:1.1rem;background:linear-gradient(135deg,var(--sakura),var(--primary));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;min-width:65px}
+  .history-item .h-title{flex:1;min-width:180px;font-weight:600}
+  .history-item .h-date{font-size:.82rem;color:var(--text-muted)}
+
+  @media(max-width:640px){
+    .lesson-item{flex-wrap:wrap}.lesson-actions{width:100%}.lesson-actions .btn{flex:1}
+    .subject-header{flex-direction:column;text-align:center}.quick-progress{flex-direction:column;align-items:flex-start}
+    .result-header{flex-direction:column;text-align:center}.hero{padding:3rem 1rem 2rem}
+    .hero::before,.hero::after{font-size:3rem;opacity:.12}.header-sakura{display:none}
+    .exam-timer-bar{top:56px;padding:.65rem 1rem}.exam-timer-bar .timer{font-size:1.2rem}
+    .exam-result-summary .big-score{font-size:2.8rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="petals-container" id="petals" aria-hidden="true"></div>
+
+<header class="site-header">
+  <span class="header-sakura left" aria-hidden="true">🌸</span>
+  <span class="header-sakura right" aria-hidden="true">🌸</span>
+  <div class="header-inner">
+    <a href="#/" class="logo"><span class="flower-icon">🌸</span><span>Ôn Thi Vào 10</span></a>
+    <nav class="main-nav">
+      <a href="#/" id="nav-home">Trang chủ</a>
+      <a href="#/exams" id="nav-exams">Đề thi</a>
+      <a href="#/progress" id="nav-progress">Tiến độ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer class="site-footer">© 2026 Ôn Thi Vào 10 · Dữ liệu tiến độ được lưu trên trình duyệt của bạn</footer>
+
+<script>
+/* ============================================================
+   SAKURA
+   ============================================================ */
+function initSakura() {
+  const c = document.getElementById("petals");
+  if (!c) return;
+  const n = window.innerWidth < 768 ? 10 : 18;
+  for (let i = 0; i < n; i++) {
+    const p = document.createElement("div");
+    p.className = "petal" + (i % 3 === 0 ? " petal-alt" : "");
+    const s = 8 + Math.random() * 10;
+    p.style.left = Math.random() * 100 + "%";
+    p.style.width = s + "px"; p.style.height = s + "px";
+    p.style.animationDelay = (Math.random() * 15) + "s";
+    p.style.animationDuration = (11 + Math.random() * 12) + "s";
+    p.style.setProperty("--drift", (Math.random() * 240 - 120) + "px");
+    c.appendChild(p);
+  }
+}
+
+/* ============================================================
+   ESCAPE HTML - quan trọng để tránh XSS và lỗi render
+   ============================================================ */
+function esc(str) {
+  if (str === undefined || str === null) return "";
+  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+
+/* ============================================================
+   DỮ LIỆU MÔN HỌC
+   ============================================================ */
+const SUBJECTS = [
+  { id:"toan", name:"Toán", icon:"📐", color:"#4f46e5", description:"Đại số, Hình học, Thống kê & Xác suất",
+    lessons:[
+      { id:"toan-1", title:"Căn thức bậc hai", content:`<h3>1. Căn bậc hai số học</h3><p>Với <strong>a ≥ 0</strong>, căn bậc hai số học của a là <strong>x ≥ 0</strong> sao cho x² = a.</p><h3>2. Hằng đẳng thức</h3><p><strong>√A² = |A|</strong></p><h3>3. Điều kiện xác định</h3><p>√A xác định khi <strong>A ≥ 0</strong>.</p><div class="example"><strong>Ví dụ:</strong> √(x−3) xác định khi x ≥ 3.</div>`,
+        quiz:[{q:"Căn bậc hai số học của 25 là:",options:["5","−5","±5","50"],correct:0},{q:"√((−4)²) bằng:",options:["−4","4","16","−16"],correct:1},{q:"√(x−3) xác định khi:",options:["x>3","x≥3","x<3","x≤3"],correct:1}] },
+      { id:"toan-2", title:"Hàm số bậc nhất", content:`<h3>1. Định nghĩa</h3><p>Dạng <strong>y = ax + b</strong> (a ≠ 0).</p><h3>2. Tính chất</h3><ul><li>Đồng biến khi <strong>a &gt; 0</strong>.</li><li>Nghịch biến khi <strong>a &lt; 0</strong>.</li></ul><h3>3. Đồ thị</h3><p>Là một <strong>đường thẳng</strong>, cắt trục tung tại (0;b).</p>`,
+        quiz:[{q:"Hàm số nào là bậc nhất?",options:["y=x²+1","y=1/x+2","y=−2x+3","y=√x"],correct:2},{q:"Đồ thị hàm bậc nhất là:",options:["Parabol","Đường thẳng","Đường tròn","Hyperbol"],correct:1},{q:"Hệ số góc của y=3x−2:",options:["−2","3","−3","2"],correct:1}] },
+      { id:"toan-3", title:"Phương trình bậc hai", content:`<h3>1. Định nghĩa</h3><p><strong>ax² + bx + c = 0</strong> (a ≠ 0).</p><h3>2. Công thức</h3><p>Δ = b² − 4ac:</p><ul><li>Δ &gt; 0: hai nghiệm phân biệt.</li><li>Δ = 0: nghiệm kép x = −b/2a.</li><li>Δ &lt; 0: vô nghiệm.</li></ul><h3>3. Vi-ét</h3><p style="text-align:center"><strong>x₁ + x₂ = −b/a; x₁·x₂ = c/a</strong></p>`,
+        quiz:[{q:"Nghiệm của x²−5x+6=0:",options:["x=1;x=6","x=2;x=3","x=−2;x=−3","Vô nghiệm"],correct:1},{q:"Δ của x²+2x+1=0:",options:["0","4","8","−4"],correct:0},{q:"Tổng nghiệm x²−5x+6=0:",options:["−5","6","5","−6"],correct:2}] },
+      { id:"toan-4", title:"Hệ thức lượng tam giác vuông", content:`<h3>1. Hệ thức</h3><ul><li>b² = a·b' ; c² = a·c'</li><li>h² = b'·c'</li><li>b·c = a·h</li></ul><h3>2. Tỉ số lượng giác</h3><ul><li>sin α = đối/huyền; cos α = kề/huyền</li><li>tan α = đối/kề; cot α = kề/đối</li></ul><div class="example"><strong>Ví dụ:</strong> AB=3, AC=4 → BC=5.</div>`,
+        quiz:[{q:"Định lý Py-ta-go:",options:["a²=b²+c²","a=b+c","a²=b·c","a=2b"],correct:0},{q:"sin α =",options:["kề/huyền","đối/huyền","đối/kề","huyền/đối"],correct:1},{q:"AB=3, AC=4 → BC=?",options:["5","7","12","25"],correct:0}] }
+    ]
+  },
+  { id:"van", name:"Ngữ văn", icon:"📖", color:"#db2777", description:"Đọc hiểu, Nghị luận xã hội, Nghị luận văn học",
+    lessons:[
+      { id:"van-1", title:"Kỹ năng đọc hiểu", content:`<h3>1. Phương thức biểu đạt</h3><p>6 loại: <strong>tự sự, miêu tả, biểu cảm, nghị luận, thuyết minh, hành chính – công vụ</strong>.</p><h3>2. Biện pháp tu từ</h3><ul><li>So sánh, Ẩn dụ, Hoán dụ, Nhân hóa, Điệp ngữ.</li></ul>`,
+        quiz:[{q:"Văn bản thuyết minh có phương thức chính:",options:["Tự sự","Miêu tả","Thuyết minh","Biểu cảm"],correct:2},{q:"'Mặt trời của bắp' là:",options:["So sánh","Ẩn dụ","Nhân hóa","Hoán dụ"],correct:1}] },
+      { id:"van-2", title:"Nghị luận xã hội", content:`<h3>1. Bố cục</h3><p>3 phần: <strong>Mở – Thân – Kết</strong>.</p><h3>2. Dẫn chứng</h3><p>Phải <strong>tiêu biểu, xác thực</strong>.</p>`,
+        quiz:[{q:"Bố cục bài nghị luận xã hội:",options:["2 phần","3 phần","4 phần","5 phần"],correct:1},{q:"Dẫn chứng cần:",options:["Thật nhiều","Tiêu biểu, xác thực","Càng dài càng tốt","Không cần"],correct:1}] }
+    ]
+  },
+  { id:"anh", name:"Tiếng Anh", icon:"🌍", color:"#0891b2", description:"Ngữ âm, Ngữ pháp, Đọc hiểu, Viết",
+    lessons:[
+      { id:"anh-1", title:"Ngữ âm -ed và -s", content:`<h3>1. -ed</h3><ul><li><strong>/ɪd/:</strong> sau -t, -d.</li><li><strong>/t/:</strong> sau âm vô thanh.</li><li><strong>/d/:</strong> còn lại.</li></ul><h3>2. -s</h3><ul><li><strong>/ɪz/:</strong> sau s,z,sh,ch,x,g,c.</li><li><strong>/s/:</strong> sau âm vô thanh.</li><li><strong>/z/:</strong> còn lại.</li></ul>`,
+        quiz:[{q:"'wanted' -ed đọc là:",options:["/t/","/d/","/ɪd/","/z/"],correct:2},{q:"'played' -ed đọc là:",options:["/t/","/d/","/ɪd/","/s/"],correct:1},{q:"'books' -s đọc là:",options:["/s/","/z/","/ɪz/","/ʃ/"],correct:0}] },
+      { id:"anh-2", title:"Hiện tại hoàn thành", content:`<h3>Cấu trúc</h3><p><strong>S + have/has + V3/ed</strong></p><h3>Dấu hiệu</h3><p><em>already, yet, just, ever, never, since, for...</em></p>`,
+        quiz:[{q:"I ______ here since 2020.",options:["live","lived","have lived","am living"],correct:2},{q:"She ______ to Paris twice.",options:["has been","was","is","goes"],correct:0},{q:"Cấu trúc hiện tại hoàn thành:",options:["S+V2/ed","S+have/has+V3/ed","S+am/is/are+V-ing","S+will+V"],correct:1}] },
+      { id:"anh-3", title:"Câu điều kiện", content:`<h3>Loại 1</h3><p><strong>If + S + V (HTĐ), S + will + V</strong></p><h3>Loại 2</h3><p><strong>If + S + V2/ed, S + would + V</strong></p><h3>Loại 3</h3><p><strong>If + S + had + V3/ed, S + would have + V3/ed</strong></p>`,
+        quiz:[{q:"If it ______, we will stay home.",options:["rains","rained","will rain","raining"],correct:0},{q:"If I were you, I ______ study harder.",options:["will","would","can","am"],correct:1},{q:"Câu ĐK loại 1:",options:["Không thật quá khứ","Không thật hiện tại","Có thể xảy ra hiện tại/tương lai","Chắc chắn xảy ra"],correct:2}] }
+    ]
+  }
+];
+
+/* ============================================================
+   DỮ LIỆU ĐỀ THI — BÁM SÁT ĐỀ MINH HỌA 2025
+   ============================================================ */
+const EXAMS = [
+  {
+    id: "toan-de1", subjectId: "toan",
+    title: "Đề thi thử Toán — Số 1",
+    description: "Cấu trúc đề minh họa 2025: 24 TN + 4 ĐS + 3 TLN",
+    duration: 90, totalPoints: 10,
+    sections: [
+      {
+        name: "PHẦN I. TRẮC NGHIỆM",
+        instruction: "Chọn đáp án đúng nhất (0,25 điểm/câu).",
+        questions: [
+          { type:"mcq", points:0.25, q:"Nguyên hàm của hàm số f(x) = e^x là:", options:["e^(x+1)/(x+1) + C","e^x + C","e^x/x + C","x·e^(x−1) + C"], correct:1 },
+          { type:"mcq", points:0.25, q:"Thể tích khối tròn xoay khi quay hình phẳng giới hạn bởi y=f(x)>0, trục Ox, x=a, x=b quanh Ox là:", options:["π∫|f(x)|dx","π²∫f(x)dx","π²∫[f(x)]²dx","π∫[f(x)]²dx"], correct:3 },
+          { type:"mcq", points:0.25, q:"Hai mẫu số liệu ghép nhóm M₁, M₂ có tần số M₁ gấp đôi M₂. Gọi s₁, s₂ là độ lệch chuẩn. Phát biểu đúng:", options:["s₁ = s₂","s₁ = 2s₂","2s₁ = s₂","4s₁ = s₂"], correct:0 },
+          { type:"mcq", points:0.25, q:"Trong Oxyz, đường thẳng qua M(1;−3;5) có VTCP u=(2;−1;1) có phương trình:", options:["(x−1)/2 = (y−3)/(−1) = (z−5)/1","(x−1)/2 = (y+3)/(−1) = (z−5)/1","(x−1)/2 = (y+3)/(−1) = (z+5)/1","(x+1)/2 = (y+3)/(−1) = (z−5)/1"], correct:1 },
+          { type:"mcq", points:0.25, q:"Tập nghiệm của bất phương trình log₂(x−1) < 3 là:", options:["(1;9)","(−∞;9)","(9;+∞)","(1;7)"], correct:0 },
+          { type:"mcq", points:0.25, q:"Trong Oxyz, mặt phẳng (P): x − 3y − z + 8 = 0 có một VTPT là:", options:["(1;−3;1)","(1;−3;−1)","(1;−3;8)","(1;3;8)"], correct:1 },
+          { type:"mcq", points:0.25, q:"Hình chóp S.ABCD có đáy là hình chữ nhật và SA ⊥ (ABCD). Mặt phẳng vuông góc với (ABCD) là:", options:["(SAB)","(SBC)","(SCD)","(SBD)"], correct:0 },
+          { type:"mcq", points:0.25, q:"Nghiệm của phương trình 2^x = 6 là:", options:["log₆2","3","4","log₂6"], correct:3 },
+          { type:"mcq", points:0.25, q:"Cấp số cộng (uₙ) có u₁ = 3, u₅ = 11. Số hạng u₂ là:", options:["5","7","9","11"], correct:0 },
+          { type:"mcq", points:0.25, q:"Nguyên hàm của f(x) = x⁴ + x² là:", options:["4x³ + 2x + C","(1/5)x⁵ + (1/3)x³ + C","x⁵ + x³ + C","x⁴ + x² + C"], correct:1 },
+          { type:"mcq", points:0.25, q:"Khẳng định SAI là:", options:["sin(a+b) = sin a·cos b + cos a·sin b","cos(a+b) = cos a·cos b − sin a·sin b","cos(a−b) = cos a·cos b − sin a·sin b","sin(a−b) = sin a·cos b − cos a·sin b"], correct:2 },
+          { type:"mcq", points:0.25, q:"Cự li ném tạ có các nhóm [19;19,5), [19,5;20), ..., [21;21,5). Khoảng biến thiên là:", options:["3","2,5","1,5","2"], correct:1 },
+          { type:"mcq", points:0.25, q:"Hộp có 6 đỏ, 4 xanh, lấy 3 quả. Xác suất lấy được 3 xanh là:", options:["1/6","2/5","1/5","1/30"], correct:3 },
+          { type:"mcq", points:0.25, q:"Cho ∫ₐᵇ f(x)dx = 2 và ∫ₐᶜ f(x)dx = 5. Khi đó ∫_b^c f(x)dx bằng:", options:["−7","3","7","−3"], correct:1 },
+          { type:"mcq", points:0.25, q:"Cấp số nhân u₁ = −6, q = 2. Số hạng u₅ là:", options:["24","−96","96","−24"], correct:1 },
+          { type:"mcq", points:0.25, q:"Trong Oxyz, A(1;2;3), B(3;0;1). Trung điểm AB có tọa độ:", options:["(2;1;2)","(4;2;4)","(1;−1;−1)","(2;−1;2)"], correct:0 },
+          { type:"mcq", points:0.25, q:"Hàm số y = −x³ + 3x có bao nhiêu điểm cực trị?", options:["0","1","2","3"], correct:2 },
+          { type:"mcq", points:0.25, q:"Hình nón r = 3, l = 5. Diện tích xung quanh là:", options:["15π","12π","9π","24π"], correct:0 },
+          { type:"mcq", points:0.25, q:"Giá trị lớn nhất của y = x³ − 3x + 2 trên [0;2]:", options:["2","4","0","1"], correct:1 },
+          { type:"mcq", points:0.25, q:"Mặt cầu (S): (x−1)² + (y+2)² + z² = 9 có bán kính:", options:["3","9","6","1"], correct:0 },
+          { type:"mcq", points:0.25, q:"log₃(x+2) = 2 có nghiệm:", options:["x = 7","x = 5","x = 9","x = 11"], correct:0 },
+          { type:"mcq", points:0.25, q:"Hàm số y = (ax+b)/(cx+d) có tiệm cận ngang y = 1/2 khi:", options:["a/c = 2","a/c = 1/2","b/d = 1/2","a/b = 1/2"], correct:1 },
+          { type:"mcq", points:0.25, q:"Cho hình hộp ABCD.A'B'C'D'. Đẳng thức đúng là:", options:["AB + BB' + B'A' = AC'","AB + BC' + C'D' = AC'","AB + AC + AA' = AC'","AB + AA' + AD = AC'"], correct:3 },
+          { type:"mcq", points:0.25, q:"Hàm số y = x³−3x nghịch biến trên khoảng:", options:["(−∞;−1)","(−1;1)","(1;+∞)","(−∞;1)"], correct:1 }
+        ]
+      },
+      {
+        name: "PHẦN II. ĐÚNG / SAI",
+        instruction: "Chọn Đúng hoặc Sai cho mỗi nhận định (0,5 điểm/câu).",
+        questions: [
+          { type:"tf", points:0.5, q:"Cho f(x) = 2cos x + x. Đạo hàm f'(x) = −2sin x + 1.", correct:true },
+          { type:"tf", points:0.5, q:"Cho f(x) = 2cos x + x trên [0;π/2]. Nghiệm của f'(x) = 0 là x = π/6.", correct:true },
+          { type:"tf", points:0.5, q:"Ô tô tăng tốc với vận tốc v(t) = at + b (a>0), sau 12 giây nhập làn với quãng đường 180m. Giá trị b = 10.", correct:true },
+          { type:"tf", points:0.5, q:"Thiên thạch chuyển động từ M(6;20;0) đến N(−6;−12;16). Một VTCP của đường thẳng MN là (12;32;16).", correct:false }
+        ]
+      },
+      {
+        name: "PHẦN III. TRẢ LỜI NGẮN",
+        instruction: "Điền đáp án vào ô trống (mỗi câu ~0,67 điểm).",
+        questions: [
+          { type:"short", points:0.67, q:"Lăng trụ đứng ABC.A'B'C' có AB=5, BC=6, CA=7. Khoảng cách giữa AA' và BC (làm tròn 1 chữ số thập phân):", correct:["4.9","4,9"], placeholder:"Nhập số" },
+          { type:"short", points:0.67, q:"Doanh nghiệp sản xuất x sản phẩm (1≤x≤500). Doanh thu F(x) = x³ − 1999x² + 1001000x + 250000, chi phí BQ G(x) = x + 1000 + 250000/x. Số sản phẩm để lợi nhuận lớn nhất:", correct:["500"], placeholder:"Nhập số" },
+          { type:"short", points:0.66, q:"Hộp I: 6 đỏ, 4 vàng. Hộp II: 7 đỏ, 3 vàng. Lấy 1 bóng hộp I bỏ sang hộp II, sau đó lấy 1 bóng hộp II. Xác suất bóng lấy ra là bóng đỏ được chuyển từ hộp I sang (làm tròn 2 chữ số TP):", correct:["0.27","0,27"], placeholder:"Nhập số" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "van-de1", subjectId: "van",
+    title: "Đề thi thử Ngữ văn — Số 1",
+    description: "Cấu trúc: Đọc hiểu (4,0đ) + Làm văn (6,0đ)",
+    duration: 120, totalPoints: 10,
+    sections: [
+      {
+        name: "PHẦN I. ĐỌC HIỂU (4,0 điểm)",
+        instruction: "Đọc đoạn trích và trả lời câu hỏi.",
+        passage: `Điều tạo nên lịch sử nghệ thuật của nhân loại không phải là sự lặp lại, mà là sự tiếp nối. Thế hệ nghệ sĩ này tiếp nối thế hệ nghệ sĩ khác. Nếu không có những thế hệ đi trước, những người nghệ sĩ của thế hệ sau sẽ không có nguồn lực để sáng tạo và khai phá. Dòng chảy của con sông nghệ thuật không bao giờ ngừng, bởi mỗi thế hệ lại đổ vào đó những phù sa mới, những cá tính mới.`,
+        passageSource: "(Trích bài phê bình văn học)",
+        questions: [
+          { type:"mcq", points:1, q:"Theo đoạn trích, điều gì tạo nên lịch sử nghệ thuật nhân loại?", options:["Sự lặp lại","Sự tiếp nối giữa các thế hệ nghệ sĩ","Sự phá hủy","Sự cô lập"], correct:1 },
+          { type:"mcq", points:1, q:"Nếu không có thế hệ nghệ sĩ trước đó, nghệ sĩ thế hệ sau sẽ ra sao?", options:["Vẫn sáng tạo tốt","Không có nguồn lực để sáng tạo và khai phá","Có nhiều cơ hội hơn","Được tự do hơn"], correct:1 },
+          { type:"mcq", points:1, q:"Việc liên tưởng dòng sông với lịch sử sáng tạo nghệ thuật có tác dụng gì?", options:["Làm câu văn ngắn gọn","Tạo liên tưởng độc đáo, nhấn mạnh tính liên tục, kế thừa","Làm khó hiểu vấn đề","Không có tác dụng đặc biệt"], correct:1 },
+          { type:"essay", points:1, q:"Từ đoạn trích, rút ra bài học gì về sự kế thừa và sáng tạo? (Viết ngắn 2-3 câu)",
+            modelAnswer:"Gợi ý: Mỗi thế hệ cần kế thừa giá trị tốt đẹp của thế hệ đi trước, đồng thời không ngừng khai phá, sáng tạo để tạo dấu ấn riêng, góp phần làm phong phú thêm dòng chảy văn hóa – nghệ thuật của dân tộc và nhân loại." }
+        ]
+      },
+      {
+        name: "PHẦN II. LÀM VĂN (6,0 điểm)",
+        instruction: "Viết bài văn nghị luận.",
+        questions: [
+          {
+            type:"essay", points:2,
+            q:"(2,0 điểm) Viết đoạn văn nghị luận (khoảng 200 chữ) trình bày suy nghĩ về ý nghĩa của việc tôn trọng cá tính.",
+            modelAnswer:`Gợi ý dàn ý:
+- Giải thích: Cá tính là nét riêng biệt của mỗi người; tôn trọng cá tính là chấp nhận sự khác biệt.
+- Ý nghĩa:
+  + Giúp cá nhân phát huy tiềm năng, tự tin khẳng định bản thân.
+  + Xã hội đa dạng, phong phú về ý tưởng, sáng tạo.
+  + Giảm áp lực đồng trang lứa, xây dựng môi trường sống lành mạnh.
+  + Thúc đẩy sáng tạo, đổi mới trong học tập và lao động.
+- Phản biện: Tôn trọng cá tính không đồng nghĩa cổ xúy hành vi lệch chuẩn, vi phạm đạo đức.
+- Liên hệ: Mỗi người cần học cách chấp nhận sự khác biệt và dám sống với cá tính của mình.` },
+          {
+            type:"essay", points:4,
+            q:"(4,0 điểm) Phân tích khổ thơ đầu bài 'Mùa xuân nho nhỏ' (Thanh Hải):\n\nMọc giữa dòng sông xanh\nMột bông hoa tím biếc\nƠi con chim chiền chiện\nHót chi mà vang trời\nTừng giọt long lanh rơi\nTôi đưa tay tôi hứng",
+            modelAnswer:`Gợi ý dàn ý:
+1. Mở bài: Giới thiệu Thanh Hải, bài thơ "Mùa xuân nho nhỏ", khổ thơ đầu.
+2. Thân bài:
+- Bức tranh mùa xuân xứ Huế: dòng sông xanh, bông hoa tím biếc, tiếng chim chiền chiện — gam màu tươi sáng, đặc trưng xứ Huế.
+- Nghệ thuật:
+  + Đảo ngữ "Mọc giữa dòng sông xanh" — nhấn mạnh sức sống mãnh liệt.
+  + Câu cảm thán "Ơi", "Hót chi mà" — giọng điệu thân thương.
+  + Ẩn dụ chuyển đổi cảm giác "Từng giọt long lanh rơi / Tôi đưa tay tôi hứng" — tiếng chim hữu hình thành giọt, thể hiện sự nâng niu.
+- Cảm xúc: say mê, yêu thiên nhiên, yêu quê hương tha thiết.
+3. Kết bài: Khẳng định vẻ đẹp của khổ thơ; liên hệ bản thân.` }
+        ]
+      }
+    ]
+  },
+  {
+    id: "anh-de1", subjectId: "anh",
+    title: "Đề thi thử Tiếng Anh — Số 1",
+    description: "24 câu trắc nghiệm (0,42 điểm/câu)",
+    duration: 60, totalPoints: 10,
+    sections: [
+      {
+        name: "PHẦN TRẮC NGHIỆM",
+        instruction: "Chọn đáp án đúng nhất.",
+        questions: [
+          { type:"mcq", points:0.42, q:"Brett: 'Let\\'s eat out tonight.' — Julie: '______.'", options:["Here you are","Yes, it\\'s true","That\\'s a great idea","Yes, I do"], correct:2 },
+          { type:"mcq", points:0.42, q:"Sophia: 'I think we should use solar energy.' — Jenny: '______ It\\'s clean and renewable.'", options:["You\\'re wrong","Of course not","I don\\'t think so","I agree with you"], correct:3 },
+          { type:"mcq", points:0.42, q:"The child took a more ______ role in his learning.", options:["activate","activity","active","actively"], correct:2 },
+          { type:"mcq", points:0.42, q:"The plants ______ by my brother every day.", options:["watered","are watering","water","are watered"], correct:3 },
+          { type:"mcq", points:0.42, q:"My aunt doesn\\'t like to go out at ______ night.", options:["an","the","(no article)","a"], correct:2 },
+          { type:"mcq", points:0.42, q:"A good way for parents and children to get closer is to ______ housework together.", options:["do","take","turn","make"], correct:0 },
+          { type:"mcq", points:0.42, q:"The teachers in our school are very helpful and kind ______ us.", options:["at","to","for","in"], correct:1 },
+          { type:"mcq", points:0.42, q:"Lucy was ______ runner in the competition.", options:["faster","the fastest","fastest","faster than"], correct:1 },
+          { type:"mcq", points:0.42, q:"The boy is practicing the piano, ______?", options:["doesn\\'t he","was he","he was","isn\\'t he"], correct:0 },
+          { type:"mcq", points:0.42, q:"I stopped ______ in order to get something to eat.", options:["working","worked","to work","to working"], correct:0 },
+          { type:"mcq", points:0.42, q:"Thanh ______ tea when his sister came home.", options:["is making","has made","makes","was making"], correct:3 },
+          { type:"mcq", points:0.42, q:"Our friends usually ______ early in the morning.", options:["look for","turn off","put on","wake up"], correct:3 },
+          { type:"mcq", points:0.42, q:"The travel agency reports that most ______ enjoyed the city tour.", options:["spectators","commuters","sightseers","viewers"], correct:2 },
+          { type:"mcq", points:0.42, q:"I will pick you up ______.", options:["as soon as you arrive at the station","after you had arrived","when you will arrive","until you arrive"], correct:0 },
+          { type:"mcq", points:0.42, q:"The mass media serves as a powerful means of distributing information. (CLOSEST)", options:["bad","great","weak","cheap"], correct:1 },
+          { type:"mcq", points:0.42, q:"The boy is unable to provide a good reason. (CLOSEST)", options:["take","perform","give","allow"], correct:2 },
+          { type:"mcq", points:0.42, q:"Despite their striking differences, they have developed a good relationship. (OPPOSITE)", options:["major","clear","small","big"], correct:2 },
+          { type:"mcq", points:0.42, q:"Choose the word whose underlined part differs: nature / photo / artist / winter", options:["nature","photo","artist","winter"], correct:0 },
+          { type:"mcq", points:0.42, q:"Choose the word with different stress: possible / national / creative / different", options:["possible","national","creative","different"], correct:2 },
+          { type:"mcq", points:0.42, q:"What is the main idea of the passage about water pollution?", options:["Rubbish on land is more dangerous than in the sea.","Water pollution has serious effects on the environment and animals.","People should stop using plastic bottles.","Beaches are always covered in rubbish."], correct:1 },
+          { type:"mcq", points:0.42, q:"According to the passage, what can happen when birds eat plastic bottles?", options:["They get stronger.","They can\\'t eat anything else.","They fly away.","They drink more water."], correct:1 },
+          { type:"mcq", points:0.42, q:"The word 'ruins' in the passage is closest in meaning to:", options:["protects","destroys","cleans","improves"], correct:1 },
+          { type:"mcq", points:0.42, q:"What does the author imply about people\\'s reaction to rubbish in the sea?", options:["They react more strongly than on land.","They often ignore it.","They always clean it up.","They never see it."], correct:1 },
+          { type:"mcq", points:0.42, q:"Which is NOT mentioned as an effect of water pollution?", options:["Beautiful beaches covered in rubbish.","Plastic bags floating in rivers and lakes.","Fish dying because of chemicals.","Animals mistaking plastic for food."], correct:2 }
+        ]
+      }
+    ]
+  }
+];
+
+/* ============================================================
+   STORAGE (có try/catch để tránh lỗi)
+   ============================================================ */
+const STORAGE_KEY = "on-thi-10-progress";
+const EXAM_RESULTS_KEY = "on-thi-10-exam-results";
+const SESSION_PREFIX = "on-thi-10-session-";
+
+function loadProgress() {
+  try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : { lessons:{}, quizzes:{} }; }
+  catch (e) { return { lessons:{}, quizzes:{} }; }
+}
+function saveProgress(p) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch (e) {} }
+function markLessonDone(id) { const p = loadProgress(); p.lessons[id] = { done:true, date:new Date().toISOString() }; saveProgress(p); }
+function saveQuizResult(id, score, total) { const p = loadProgress(); p.quizzes[id] = { score, total, percent: Math.round(score/total*100), date: new Date().toISOString() }; saveProgress(p); }
+function resetProgress() { try { localStorage.removeItem(STORAGE_KEY); } catch (e) {} }
+
+function loadExamResults() { try { const r = localStorage.getItem(EXAM_RESULTS_KEY); return r ? JSON.parse(r) : []; } catch (e) { return []; } }
+function saveExamResults(arr) { try { localStorage.setItem(EXAM_RESULTS_KEY, JSON.stringify(arr)); } catch (e) {} }
+function addExamResult(r) { const a = loadExamResults(); a.unshift(r); saveExamResults(a); }
+
+function getExamSession(id) { try { const r = localStorage.getItem(SESSION_PREFIX + id); return r ? JSON.parse(r) : null; } catch (e) { return null; } }
+function saveExamSession(id, s) { try { localStorage.setItem(SESSION_PREFIX + id, JSON.stringify(s)); } catch (e) {} }
+function clearExamSession(id) { try { localStorage.removeItem(SESSION_PREFIX + id); } catch (e) {} }
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+function findLesson(id) { for (const s of SUBJECTS) { const l = s.lessons.find(x => x.id === id); if (l) return { subject: s, lesson: l }; } return null; }
+function findExam(id) { return EXAMS.find(e => e.id === id); }
+function getSubject(id) { return SUBJECTS.find(s => s.id === id); }
+
+function notFound() {
+  return `<div class="container narrow" style="padding:4rem 1.25rem;text-align:center">
+    <h1 style="font-size:3rem">🌸</h1>
+    <h2>Không tìm thấy nội dung</h2>
+    <p class="muted" style="margin:.5rem 0 1.5rem">Trang bạn tìm không tồn tại.</p>
+    <a href="#/" class="btn btn-primary">← Về trang chủ</a>
+  </div>`;
+}
+function showToast(msg) {
+  let t = document.getElementById("toast");
+  if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; document.body.appendChild(t); }
+  t.textContent = msg;
+  requestAnimationFrame(() => t.classList.add("show"));
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove("show"), 2400);
+}
+function formatDate(iso) {
+  try { const d = new Date(iso); return d.toLocaleDateString("vi-VN", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" }); }
+  catch (e) { return "—"; }
+}
+function formatDuration(sec) { const m = Math.floor(sec / 60), s = sec % 60; return m + " phút " + (s > 0 ? s + " giây" : ""); }
+
+let activeTimerId = null;
+function clearActiveTimer() { if (activeTimerId) { clearInterval(activeTimerId); activeTimerId = null; } }
+
+/* ============================================================
+   RENDER — TRANG CHỦ
+   ============================================================ */
+function renderHome() {
+  const p = loadProgress();
+  const totalLessons = SUBJECTS.reduce((s, x) => s + x.lessons.length, 0);
+  let done = 0, quizSum = 0, quizCount = 0;
+  SUBJECTS.forEach(s => s.lessons.forEach(l => {
+    if (p.lessons[l.id]?.done) done++;
+    if (p.quizzes[l.id]) { quizSum += p.quizzes[l.id].percent; quizCount++; }
+  }));
+  const avg = quizCount ? Math.round(quizSum / quizCount) : 0;
+  const percent = totalLessons ? Math.round(done / totalLessons * 100) : 0;
+
+  app.innerHTML = `
+    <section class="hero">
+      <div class="container">
+        <span class="hero-badge">🌸 Luyện thi tuyển sinh lớp 10</span>
+        <h1>Chinh phục kỳ thi vào 10<br>cùng <span class="accent">lộ trình rõ ràng</span></h1>
+        <p>Học lý thuyết, luyện trắc nghiệm, làm đề thi thử có tính giờ và theo dõi tiến độ.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" id="start-btn">Bắt đầu học ngay 🌸</button>
+          <a href="#/exams" class="btn btn-outline btn-lg">📝 Làm đề thi thử</a>
+        </div>
+      </div>
+    </section>
+    <section class="container" id="subjects-section">
+      <h2 class="section-title">Chọn môn học</h2>
+      <div class="card-grid">
+        ${SUBJECTS.map(s => {
+          const sDone = s.lessons.filter(l => p.lessons[l.id]?.done).length;
+          const sPct = Math.round(sDone / s.lessons.length * 100);
+          return `<a href="#/subject/${s.id}" class="subject-card" style="--accent:${s.color}">
+            <div class="subject-icon">${s.icon}</div>
+            <h3>${s.name}</h3>
+            <p class="muted">${s.description}</p>
+            <div class="mini-progress"><div style="width:${sPct}%"></div></div>
+            <span class="muted small">${sDone}/${s.lessons.length} bài đã học</span>
+          </a>`;
+        }).join("")}
+      </div>
+    </section>
+    <section class="container">
+      <h2 class="section-title">Đề thi thử có tính giờ</h2>
+      <div class="card-grid">
+        ${EXAMS.map(e => {
+          const sub = getSubject(e.subjectId);
+          return `<a href="#/exam/${e.id}" class="exam-card" style="--accent:${sub.color}">
+            <div class="exam-icon">${sub.icon}</div>
+            <h3>${e.title}</h3>
+            <p class="exam-desc">${e.description}</p>
+            <div class="exam-meta">
+              <span class="chip">⏱ ${e.duration} phút</span>
+              <span class="chip sakura">${e.totalPoints} điểm</span>
+            </div>
+          </a>`;
+        }).join("")}
+      </div>
+    </section>
+    <section class="container">
+      <div class="quick-progress">
+        <div><h2 style="font-size:1.2rem">Tổng quan tiến độ</h2><p class="muted">Bạn đã hoàn thành <strong>${done}/${totalLessons}</strong> bài học.</p></div>
+        <div class="quick-stats">
+          <div class="stat"><strong>${percent}%</strong><span>Hoàn thành</span></div>
+          <div class="stat"><strong>${avg}%</strong><span>Điểm TB quiz</span></div>
+          <div class="stat"><strong>${quizCount}</strong><span>Bài đã kiểm tra</span></div>
+        </div>
+      </div>
+    </section>
+  `;
+  document.getElementById("start-btn").addEventListener("click", () =>
+    document.getElementById("subjects-section").scrollIntoView({ behavior: "smooth" }));
+}
+
+/* ============================================================
+   RENDER — TRANG MÔN HỌC
+   ============================================================ */
+function renderSubject(subjectId) {
+  const subject = getSubject(subjectId);
+  if (!subject) { app.innerHTML = notFound(); return; }
+  const p = loadProgress();
+  const sDone = subject.lessons.filter(l => p.lessons[l.id]?.done).length;
+  const sPct = Math.round(sDone / subject.lessons.length * 100);
+
+  app.innerHTML = `
+    <div class="container">
+      <a href="#/" class="back-link">← Trang chủ</a>
+      <div class="subject-header" style="--accent:${subject.color}">
+        <div class="subject-icon-lg">${subject.icon}</div>
+        <div style="flex:1">
+          <h1>${subject.name}</h1>
+          <p class="muted">${subject.description}</p>
+          <div class="subject-progress-line">
+            <div class="progress-bar"><div class="progress-fill" style="width:${sPct}%;background:${subject.color}"></div></div>
+            <span class="muted small">${sDone}/${subject.lessons.length} bài đã học (${sPct}%)</span>
+          </div>
+        </div>
+      </div>
+      <h2 class="section-title">Danh sách bài học</h2>
+      <div class="lesson-list">
+        ${subject.lessons.map((l, i) => {
+          const done = !!p.lessons[l.id]?.done;
+          const quiz = p.quizzes[l.id];
+          return `<div class="lesson-item ${done ? "done" : ""}">
+            <div class="lesson-index">${String(i + 1).padStart(2, "0")}</div>
+            <div class="lesson-info">
+              <h3>${l.title}</h3>
+              <div class="lesson-meta">
+                ${done ? '<span class="badge badge-success">✅ Đã học</span>' : '<span class="badge badge-muted">⏳ Chưa học</span>'}
+                ${quiz ? `<span class="badge badge-info">📝 Quiz: ${quiz.score}/${quiz.total} (${quiz.percent}%)</span>` : ""}
+              </div>
+            </div>
+            <div class="lesson-actions">
+              <a href="#/lesson/${l.id}" class="btn btn-outline btn-sm">Học bài</a>
+              ${l.quiz && l.quiz.length ? `<a href="#/quiz/${l.id}" class="btn btn-primary btn-sm">Kiểm tra</a>` : ""}
+            </div>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>
+  `;
+}
+
+/* ============================================================
+   RENDER — TRANG HỌC BÀI
+   ============================================================ */
+function renderLesson(lessonId) {
+  const found = findLesson(lessonId);
+  if (!found) { app.innerHTML = notFound(); return; }
+  const { subject, lesson } = found;
+  const done = !!loadProgress().lessons[lessonId]?.done;
+
+  app.innerHTML = `
+    <div class="container narrow">
+      <a href="#/subject/${subject.id}" class="back-link">← ${subject.icon} ${subject.name}</a>
+      <h1 class="page-title">${lesson.title}</h1>
+      <article class="lesson-body">${lesson.content}</article>
+      <div class="lesson-footer">
+        <button id="mark-done" class="btn ${done ? "btn-success" : "btn-primary"}" ${done ? "disabled" : ""}>
+          ${done ? "✅ Đã học xong" : "✅ Đánh dấu đã học xong"}
+        </button>
+        ${lesson.quiz && lesson.quiz.length ? `<a href="#/quiz/${lesson.id}" class="btn btn-sakura">📝 Làm bài kiểm tra</a>` : ""}
+        <a href="#/subject/${subject.id}" class="btn btn-outline">← Về danh sách bài</a>
+      </div>
+    </div>
+  `;
+  const btn = document.getElementById("mark-done");
+  if (!done) {
+    btn.addEventListener("click", () => {
+      markLessonDone(lessonId);
+      btn.textContent = "✅ Đã học xong";
+      btn.classList.remove("btn-primary");
+      btn.classList.add("btn-success");
+      btn.disabled = true;
+      showToast("🌸 Đã lưu tiến độ bài học!");
+    });
+  }
+}
+
+/* ============================================================
+   RENDER — QUIZ NHANH
+   ============================================================ */
+function renderQuiz(lessonId) {
+  const found = findLesson(lessonId);
+  if (!found) { app.innerHTML = notFound(); return; }
+  const { subject, lesson } = found;
+  if (!lesson.quiz || !lesson.quiz.length) {
+    app.innerHTML = `<div class="container narrow" style="padding:3rem 1.25rem">
+      <h1 class="page-title">📝 Bài kiểm tra</h1>
+      <p class="muted">Bài này chưa có câu hỏi.</p>
+      <a href="#/lesson/${lessonId}" class="btn btn-outline" style="margin-top:1rem">← Về bài học</a>
+    </div>`;
+    return;
+  }
+  const total = lesson.quiz.length;
+  app.innerHTML = `
+    <div class="container narrow">
+      <a href="#/subject/${subject.id}" class="back-link">← ${subject.icon} ${subject.name}</a>
+      <h1 class="page-title">📝 Kiểm tra: ${lesson.title}</h1>
+      <p class="muted">Chọn đáp án đúng cho từng câu hỏi, sau đó bấm "Nộp bài".</p>
+      <form id="quiz-form" class="quiz-form">
+        ${lesson.quiz.map((item, qi) => `
+          <div class="quiz-question" data-q="${qi}">
+            <p class="quiz-prompt"><strong>Câu ${qi + 1}.</strong> ${item.q}</p>
+            <div class="quiz-options">
+              ${item.options.map((opt, oi) =>
+                `<label class="quiz-option"><input type="radio" name="q${qi}" value="${oi}"><span>${opt}</span></label>`
+              ).join("")}
+            </div>
+          </div>
+        `).join("")}
+        <button type="submit" class="btn btn-sakura btn-block btn-lg">Nộp bài</button>
+      </form>
+      <div id="quiz-result" class="quiz-result" hidden></div>
+    </div>
+  `;
+
+  document.getElementById("quiz-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    let score = 0;
+    lesson.quiz.forEach((item, qi) => {
+      const qEl = document.querySelector(`.quiz-question[data-q="${qi}"]`);
+      const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+      qEl.querySelectorAll(".quiz-option").forEach(el => el.classList.remove("correct", "wrong"));
+      const ci = qEl.querySelector(`input[value="${item.correct}"]`);
+      if (ci) ci.closest(".quiz-option").classList.add("correct");
+      if (selected) {
+        if (Number(selected.value) === item.correct) score++;
+        else selected.closest(".quiz-option").classList.add("wrong");
+      }
+      qEl.querySelectorAll("input").forEach(i => i.disabled = true);
+    });
+    const percent = Math.round(score / total * 100);
+    saveQuizResult(lessonId, score, total);
+    const r = document.getElementById("quiz-result");
+    r.hidden = false;
+    r.innerHTML = `
+      <div class="result-header">
+        <div class="result-score">${score}/${total}</div>
+        <div>
+          <h3>${percent >= 80 ? "🌸 Xuất sắc!" : percent >= 50 ? "👍 Khá tốt!" : "💪 Cần cố gắng thêm"}</h3>
+          <p class="muted">Bạn đạt ${percent}% — kết quả đã được lưu.</p>
+        </div>
+      </div>
+      <div class="result-actions">
+        <button class="btn btn-outline" id="retry-btn">🔄 Làm lại</button>
+        <a href="#/lesson/${lessonId}" class="btn btn-outline">📖 Ôn lại bài</a>
+        <a href="#/subject/${subject.id}" class="btn btn-primary">← Về môn ${subject.name}</a>
+      </div>`;
+    document.getElementById("retry-btn").addEventListener("click", () => renderQuiz(lessonId));
+    r.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+}
+
+/* ============================================================
+   RENDER — DANH SÁCH ĐỀ
+   ============================================================ */
+function renderExams() {
+  const results = loadExamResults();
+  app.innerHTML = `
+    <div class="container">
+      <a href="#/" class="back-link">← Trang chủ</a>
+      <h1 class="page-title">📝 Đề thi thử</h1>
+      <p class="muted">Làm bài trong thời gian quy định. Kết quả được lưu vào tiến độ.</p>
+      <h2 class="section-title">Chọn đề thi</h2>
+      <div class="card-grid">
+        ${EXAMS.map(e => {
+          const sub = getSubject(e.subjectId);
+          return `<a href="#/exam/${e.id}" class="exam-card" style="--accent:${sub.color}">
+            <div class="exam-icon">${sub.icon}</div>
+            <h3>${e.title}</h3>
+            <p class="exam-desc">${e.description}</p>
+            <div class="exam-meta">
+              <span class="chip">⏱ ${e.duration} phút</span>
+              <span class="chip sakura">${e.totalPoints} điểm</span>
+            </div>
+          </a>`;
+        }).join("")}
+      </div>
+      ${results.length ? `
+        <h2 class="section-title">Lịch sử làm đề</h2>
+        <div>
+          ${results.slice(0, 10).map(r => {
+            const e = findExam(r.examId);
+            if (!e) return "";
+            const final = r.autoScore + (r.selfScore || 0);
+            const pct = Math.round(final / r.maxScore * 100);
+            return `<div class="history-item">
+              <div class="h-score">${final.toFixed(1)}/${r.maxScore}</div>
+              <div class="h-title">${e.title}</div>
+              <span class="badge ${pct >= 80 ? "badge-success" : pct >= 50 ? "badge-warning" : "badge-danger"}">${pct}%</span>
+              <div class="h-date">${formatDate(r.date)}</div>
+            </div>`;
+          }).join("")}
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+/* ============================================================
+   RENDER — LÀM BÀI THI (ĐÃ SỬA LỖI ĐÁNH SỐ CÂU)
+   ============================================================ */
+function renderExam(examId) {
+  const exam = findExam(examId);
+  if (!exam) { app.innerHTML = notFound(); return; }
+
+  const totalQ = exam.sections.reduce((s, sec) => s + sec.questions.length, 0);
+
+  // Session management - reset nếu data đổi
+  let session = getExamSession(examId);
+  if (!session || session.questionCount !== totalQ) {
+    session = { startTime: Date.now(), answers: {}, questionCount: totalQ };
+    saveExamSession(examId, session);
+  }
+
+  // Check thời gian
+  const elapsed = (Date.now() - session.startTime) / 1000;
+  if (exam.duration * 60 - elapsed <= 0) { submitExam(exam, session, true); return; }
+
+  // Build HTML — dùng biến đếm tuần tự (KHÔNG dùng findIndex nữa)
+  let globalIdx = 0;
+  const sectionsHTML = exam.sections.map(sec => {
+    const questionsHTML = sec.questions.map(q => {
+      globalIdx++;
+      const name = "q" + globalIdx;
+      const idx = globalIdx;
+      const savedVal = session.answers[name] || "";
+      return renderExamQuestion(q, name, idx, savedVal);
+    }).join("");
+
+    return `<div class="exam-section">
+      <div class="exam-section-head">
+        <h2>${esc(sec.name)}</h2>
+        ${sec.instruction ? `<p>${esc(sec.instruction)}</p>` : ""}
+      </div>
+      ${sec.passage ? `<div class="exam-passage">${esc(sec.passage).replace(/\n/g, "<br>")}${sec.passageSource ? `<span class="source">${esc(sec.passageSource)}</span>` : ""}</div>` : ""}
+      ${questionsHTML}
+    </div>`;
+  }).join("");
+
+  app.innerHTML = `
+    <div class="container narrow">
+      <a href="#/exams" class="back-link">← Danh sách đề</a>
+      <h1 class="page-title">${exam.title}</h1>
+      <p class="muted">${exam.description}</p>
+
+      <div class="exam-timer-bar">
+        <div class="timer-info">
+          <div><strong>⏱ Thời gian còn lại</strong><div class="sub">Bài thi tự nộp khi hết giờ</div></div>
+        </div>
+        <div class="timer" id="timer">--:--</div>
+        <button type="button" class="btn btn-sakura" id="submit-top">Nộp bài</button>
+      </div>
+
+      <form id="exam-form">
+        ${sectionsHTML}
+        <button type="submit" class="btn btn-sakura btn-block btn-lg" style="margin-bottom:3rem">📤 Nộp bài</button>
+      </form>
+    </div>
+  `;
+
+  // Sync TF button classes (fallback cho :has())
+  document.querySelectorAll('.tf-btn input').forEach(input => {
+    input.addEventListener('change', () => {
+      const parent = input.closest('.tf-btn');
+      parent.parentElement.querySelectorAll('.tf-btn').forEach(b => {
+        b.classList.remove('selected-true', 'selected-false');
+      });
+      if (input.checked) {
+        parent.classList.add(input.value === 'true' ? 'selected-true' : 'selected-false');
+      }
+    });
+  });
+
+  // Auto-save khi nhập
+  const form = document.getElementById("exam-form");
+  form.addEventListener("input", (e) => {
+    const t = e.target;
+    if (!t.name) return;
+    const s = getExamSession(examId);
+    if (!s) return;
+    s.answers[t.name] = t.value;
+    saveExamSession(examId, s);
+  });
+
+  // Timer
+  const timerEl = document.getElementById("timer");
+  const tick = () => {
+    const s = getExamSession(examId);
+    if (!s) return;
+    const rem = Math.max(0, exam.duration * 60 - (Date.now() - s.startTime) / 1000);
+    const m = Math.floor(rem / 60), sec = Math.floor(rem % 60);
+    timerEl.textContent = String(m).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
+    timerEl.classList.toggle("warning", rem <= 300);
+    if (rem <= 0) { clearActiveTimer(); submitExam(exam, s, true); }
+  };
+  tick();
+  activeTimerId = setInterval(tick, 1000);
+
+  // Submit handlers
+  const handleSubmit = (e) => {
+    if (e) e.preventDefault();
+    const s = getExamSession(examId);
+    const answered = Object.keys(s?.answers || {}).filter(k => s.answers[k] !== "").length;
+    if (answered < totalQ && !confirm(`Bạn còn ${totalQ - answered} câu chưa trả lời. Vẫn nộp bài?`)) return;
+    submitExam(exam, s, false);
+  };
+  form.addEventListener("submit", handleSubmit);
+  document.getElementById("submit-top").addEventListener("click", handleSubmit);
+}
+
+/* Render một câu hỏi trong đề */
+function renderExamQuestion(q, name, idx, savedVal) {
+  const header = `<div class="question-header">
+    <span class="question-num">Câu ${idx}</span>
+    <span class="question-points">${q.points} điểm${q.type === "essay" ? " — tự luận" : ""}</span>
+  </div>`;
+
+  if (q.type === "mcq") {
+    const sv = String(savedVal);
+    return `<div class="exam-question">${header}
+      <p class="question-text">${esc(q.q)}</p>
+      <div class="quiz-options">
+        ${q.options.map((opt, oi) =>
+          `<label class="quiz-option"><input type="radio" name="${name}" value="${oi}" ${sv === String(oi) ? "checked" : ""}><span>${esc(opt)}</span></label>`
+        ).join("")}
+      </div>
+    </div>`;
+  }
+
+  if (q.type === "tf") {
+    return `<div class="exam-question">${header}
+      <p class="question-text">${esc(q.q)}</p>
+      <div class="tf-buttons">
+        <label class="tf-btn ${savedVal === "true" ? "selected-true" : ""}">
+          <input type="radio" name="${name}" value="true" ${savedVal === "true" ? "checked" : ""}>
+          <span>✓ Đúng</span>
+        </label>
+        <label class="tf-btn ${savedVal === "false" ? "selected-false" : ""}">
+          <input type="radio" name="${name}" value="false" ${savedVal === "false" ? "checked" : ""}>
+          <span>✗ Sai</span>
+        </label>
+      </div>
+    </div>`;
+  }
+
+  if (q.type === "short") {
+    return `<div class="exam-question">${header}
+      <p class="question-text">${esc(q.q)}</p>
+      <input type="text" name="${name}" class="short-input" placeholder="${esc(q.placeholder || "Nhập đáp án")}" value="${esc(savedVal)}">
+    </div>`;
+  }
+
+  if (q.type === "essay") {
+    return `<div class="exam-question">${header}
+      <p class="question-text">${esc(q.q)}</p>
+      <textarea name="${name}" class="essay-textarea" placeholder="Viết bài làm...">${esc(savedVal)}</textarea>
+    </div>`;
+  }
+  return "";
+}
+
+/* ============================================================
+   SUBMIT — CHẤM ĐIỂM
+   ============================================================ */
+function submitExam(exam, session, autoSubmitted) {
+  clearActiveTimer();
+  if (!session) return;
+
+  // Duyệt tuần tự như khi render
+  let idx = 0;
+  let autoScore = 0;
+  const details = [];
+
+  exam.sections.forEach(sec => {
+    sec.questions.forEach(q => {
+      idx++;
+      const name = "q" + idx;
+      const ans = session.answers[name];
+
+      if (q.type === "mcq") {
+        const ok = ans !== undefined && ans !== "" && Number(ans) === q.correct;
+        if (ok) autoScore += q.points;
+        details.push({ type:"mcq", i:idx, correct:ok, userAns:ans, correctAns:q.correct, q:q.q, options:q.options, points:q.points });
+      } else if (q.type === "tf") {
+        const ok = ans === String(q.correct);
+        if (ok) autoScore += q.points;
+        details.push({ type:"tf", i:idx, correct:ok, userAns:ans, correctAns:q.correct, q:q.q, points:q.points });
+      } else if (q.type === "short") {
+        const n = (ans || "").trim().toLowerCase().replace(/\s+/g, "");
+        const ok = n !== "" && q.correct.some(c => c.toLowerCase().replace(/\s+/g, "") === n);
+        if (ok) autoScore += q.points;
+        details.push({ type:"short", i:idx, correct:ok, userAns:ans, correctAns:q.correct[0], q:q.q, points:q.points });
+      } else if (q.type === "essay") {
+        details.push({ type:"essay", i:idx, userAns:ans, modelAnswer:q.modelAnswer, q:q.q, points:q.points });
+      }
+    });
+  });
+
+  const resultId = "res-" + Date.now() + "-" + Math.random().toString(36).slice(2, 7);
+  const result = {
+    id: resultId, examId: exam.id, subjectId: exam.subjectId,
+    autoScore, selfScore: 0, maxScore: exam.totalPoints,
+    details, selfScores: {}, answers: session.answers,
+    date: new Date().toISOString(),
+    duration: Math.max(0, Math.round((Date.now() - session.startTime) / 1000)),
+    autoSubmitted: !!autoSubmitted
+  };
+  addExamResult(result);
+  clearExamSession(exam.id);
+  renderExamResult(resultId);
+  if (autoSubmitted) showToast("⏱ Hết giờ — bài đã được tự động nộp!");
+}
+
+/* ============================================================
+   RENDER — KẾT QUẢ
+   ============================================================ */
+function renderExamResult(resultId) {
+  const r = loadExamResults().find(x => x.id === resultId);
+  if (!r) { app.innerHTML = notFound(); return; }
+  const exam = findExam(r.examId);
+  if (!exam) { app.innerHTML = notFound(); return; }
+
+  const finalScore = r.autoScore + (r.selfScore || 0);
+  const pct = Math.round(finalScore / r.maxScore * 100);
+  const autoCount = r.details.filter(d => d.type !== "essay").length;
+  const correctCount = r.details.filter(d => d.type !== "essay" && d.correct).length;
+
+  app.innerHTML = `
+    <div class="container narrow">
+      <a href="#/exams" class="back-link">← Danh sách đề</a>
+      <h1 class="page-title">📊 Kết quả: ${exam.title}</h1>
+
+      <div class="exam-result-summary">
+        <div class="label">Điểm của bạn</div>
+        <div class="big-score">${finalScore.toFixed(1)}<small>/${r.maxScore}</small></div>
+        <div class="stats-row">
+          <div class="s"><strong>${pct}%</strong><span>Hoàn thành</span></div>
+          <div class="s"><strong>${correctCount}/${autoCount}</strong><span>Câu tự chấm đúng</span></div>
+          <div class="s"><strong>${formatDuration(r.duration)}</strong><span>Thời gian làm</span></div>
+        </div>
+      </div>
+      ${r.autoSubmitted ? `<p class="muted" style="margin-bottom:1rem">⏱ Bài đã được tự động nộp khi hết giờ.</p>` : ""}
+
+      <h2 class="section-title">Chi tiết bài làm</h2>
+      ${r.details.map(d => {
+        if (d.type === "essay") {
+          const savedSelf = r.selfScores && r.selfScores[d.i] !== undefined ? r.selfScores[d.i] : "";
+          return `<div class="essay-review">
+            <div class="r-head"><strong>Câu ${d.i} (Tự luận)</strong><span class="muted">${d.points} điểm</span></div>
+            <p style="white-space:pre-line; font-size:.92rem">${esc(d.q)}</p>
+            ${d.userAns ? `<div class="user-essay"><strong>Bài làm của bạn:</strong><br>${esc(d.userAns)}</div>` : `<p class="muted" style="margin:.5rem 0">Bạn chưa viết bài làm.</p>`}
+            <details>
+              <summary style="cursor:pointer; color:var(--sakura); font-weight:600; margin:.5rem 0">Xem gợi ý / đáp án mẫu</summary>
+              <div class="model-answer">${esc(d.modelAnswer || "—")}</div>
+            </details>
+            <div class="self-assess">
+              <label>Tự đánh giá (0 — ${d.points}):</label>
+              <select data-essay-idx="${d.i}">
+                ${Array.from({ length: Math.floor(d.points * 2) + 1 }, (_, i) => i * 0.5).map(v =>
+                  `<option value="${v}" ${Number(savedSelf) === v ? "selected" : ""}>${v.toFixed(1)}</option>`
+                ).join("")}
+              </select>
+              <span class="muted small">Chọn điểm em tự chấm cho bài làm này.</span>
+            </div>
+          </div>`;
+        }
+
+        const cls = d.correct ? "correct" : (d.userAns === undefined || d.userAns === "" ? "unanswered" : "wrong");
+        const status = d.correct ? "✓ Đúng" : (d.userAns === undefined || d.userAns === "" ? "⚠ Chưa trả lời" : "✗ Sai");
+        let ansBlock = "";
+        if (d.type === "mcq") {
+          ansBlock = `<div class="r-answer ${cls}">
+            <div>Bạn chọn: <strong>${d.userAns !== undefined && d.userAns !== "" ? esc(d.options[d.userAns]) : "—"}</strong></div>
+            <div>Đáp án đúng: <strong>${esc(d.options[d.correctAns])}</strong></div>
+          </div>`;
+        } else if (d.type === "tf") {
+          ansBlock = `<div class="r-answer ${cls}">
+            <div>Bạn chọn: <strong>${d.userAns === "true" ? "Đúng" : d.userAns === "false" ? "Sai" : "—"}</strong></div>
+            <div>Đáp án đúng: <strong>${d.correctAns ? "Đúng" : "Sai"}</strong></div>
+          </div>`;
+        } else if (d.type === "short") {
+          ansBlock = `<div class="r-answer ${cls}">
+            <div>Bạn trả lời: <strong>${esc(d.userAns || "—")}</strong></div>
+            <div>Đáp án đúng: <strong>${esc(d.correctAns)}</strong></div>
+          </div>`;
+        }
+        return `<div class="review-item ${cls}">
+          <div class="r-head"><strong>Câu ${d.i} — ${status}</strong><span class="muted">${d.points} điểm</span></div>
+          <p style="font-size:.92rem">${esc(d.q)}</p>
+          ${ansBlock}
+        </div>`;
+      }).join("")}
+
+      <div style="display:flex; gap:.75rem; flex-wrap:wrap; margin: 2rem 0 3rem">
+        <a href="#/exam/${exam.id}" class="btn btn-sakura">🔄 Làm lại đề này</a>
+        <a href="#/exams" class="btn btn-outline">📝 Xem đề khác</a>
+        <a href="#/progress" class="btn btn-outline">📊 Xem tiến độ</a>
+      </div>
+    </div>
+  `;
+
+  // Self-assessment
+  document.querySelectorAll('select[data-essay-idx]').forEach(sel => {
+    sel.addEventListener("change", () => {
+      const i = Number(sel.dataset.essayIdx);
+      const v = Number(sel.value);
+      const rs = loadExamResults();
+      const t = rs.find(x => x.id === resultId);
+      if (!t) return;
+      t.selfScores = t.selfScores || {};
+      t.selfScores[i] = v;
+      t.selfScore = Object.values(t.selfScores).reduce((a, b) => a + b, 0);
+      saveExamResults(rs);
+      renderExamResult(resultId);
+    });
+  });
+
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+/* ============================================================
+   RENDER — TIẾN ĐỘ
+   ============================================================ */
+function renderProgress() {
+  const p = loadProgress();
+  const examResults = loadExamResults();
+  const totalLessons = SUBJECTS.reduce((s, x) => s + x.lessons.length, 0);
+  let done = 0, quizSum = 0, quizCount = 0;
+  SUBJECTS.forEach(s => s.lessons.forEach(l => {
+    if (p.lessons[l.id]?.done) done++;
+    if (p.quizzes[l.id]) { quizSum += p.quizzes[l.id].percent; quizCount++; }
+  }));
+  const avg = quizCount ? Math.round(quizSum / quizCount) : 0;
+  const percent = totalLessons ? Math.round(done / totalLessons * 100) : 0;
+  const examAvg = examResults.length
+    ? Math.round(examResults.reduce((a, r) => a + (r.autoScore + (r.selfScore || 0)) / r.maxScore * 100, 0) / examResults.length)
+    : 0;
+
+  app.innerHTML = `
+    <div class="container">
+      <a href="#/" class="back-link">← Trang chủ</a>
+      <h1 class="page-title">📊 Tiến độ ôn tập</h1>
+      <p class="muted">Theo dõi quá trình học của bạn. Dữ liệu được lưu trên trình duyệt này.</p>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-value">${done}/${totalLessons}</div><div class="stat-label">Bài đã học</div></div>
+        <div class="stat-card"><div class="stat-icon">📝</div><div class="stat-value">${quizCount}</div><div class="stat-label">Quiz đã làm</div></div>
+        <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value">${avg}%</div><div class="stat-label">Điểm TB quiz</div></div>
+        <div class="stat-card"><div class="stat-icon">🏆</div><div class="stat-value">${percent}%</div><div class="stat-label">Hoàn thành</div></div>
+      </div>
+
+      ${examResults.length ? `
+        <h2 class="section-title">Đề thi đã làm</h2>
+        <div class="stat-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+          <div class="stat-card"><div class="stat-icon">📄</div><div class="stat-value">${examResults.length}</div><div class="stat-label">Đề đã làm</div></div>
+          <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value">${examAvg}%</div><div class="stat-label">Điểm TB</div></div>
+        </div>
+        <div style="margin-bottom:2rem">
+          ${examResults.map(r => {
+            const e = findExam(r.examId);
+            if (!e) return "";
+            const final = r.autoScore + (r.selfScore || 0);
+            const pct = Math.round(final / r.maxScore * 100);
+            return `<div class="history-item">
+              <div class="h-score">${final.toFixed(1)}/${r.maxScore}</div>
+              <div class="h-title">${e.title}</div>
+              <span class="badge ${pct >= 80 ? "badge-success" : pct >= 50 ? "badge-warning" : "badge-danger"}">${pct}%</span>
+              <div class="h-date">${formatDate(r.date)}</div>
+              <a href="#/exam/${e.id}" class="btn btn-outline btn-sm">Làm lại</a>
+            </div>`;
+          }).join("")}
+        </div>
+      ` : ""}
+
+      <h2 class="section-title">Chi tiết theo môn</h2>
+      ${SUBJECTS.map(s => {
+        const sDone = s.lessons.filter(l => p.lessons[l.id]?.done).length;
+        const sPct = Math.round(sDone / s.lessons.length * 100);
+        const sQuizzes = s.lessons.filter(l => p.quizzes[l.id]);
+        const sAvg = sQuizzes.length
+          ? Math.round(sQuizzes.reduce((a, l) => a + p.quizzes[l.id].percent, 0) / sQuizzes.length)
+          : 0;
+        return `<div class="progress-subject">
+          <div class="progress-subject-head">
+            <h3>${s.icon} ${s.name}</h3>
+            <span class="badge badge-info">${sDone}/${s.lessons.length} bài · TB quiz ${sAvg}%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${sPct}%;background:${s.color}"></div></div>
+          <ul class="progress-lessons">
+            ${s.lessons.map(l => {
+              const doneL = !!p.lessons[l.id]?.done;
+              const q = p.quizzes[l.id];
+              return `<li>
+                <span class="dot ${doneL ? "dot-done" : ""}"></span>
+                <span class="lesson-title-mini">${l.title}</span>
+                <span class="lesson-status">
+                  ${doneL ? "✅" : "⏳"}
+                  ${q ? `<span class="quiz-score ${q.percent >= 80 ? "good" : q.percent >= 50 ? "mid" : "low"}">${q.percent}%</span>` : ""}
+                </span>
+              </li>`;
+            }).join("")}
+          </ul>
+        </div>`;
+      }).join("")}
+
+      <div class="danger-zone">
+        <h3>⚠️ Vùng nguy hiểm</h3>
+        <p class="muted">Xóa toàn bộ tiến độ học tập, điểm kiểm tra và lịch sử làm đề.</p>
+        <button id="reset-btn" class="btn btn-danger">🗑️ Xóa toàn bộ tiến độ</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("reset-btn").addEventListener("click", () => {
+    if (confirm("Bạn có chắc chắn muốn xóa toàn bộ tiến độ?")) {
+      resetProgress();
+      try { localStorage.removeItem(EXAM_RESULTS_KEY); } catch (e) {}
+      showToast("🌸 Đã xóa toàn bộ tiến độ");
+      renderProgress();
+    }
+  });
+}
+
+/* ============================================================
+   ROUTER — ĐÃ ĐƠN GIẢN HÓA
+   ============================================================ */
+const app = document.getElementById("app");
+
+function updateNav() {
+  const path = location.hash.replace(/^#/, "") || "/";
+  const inExams = path === "/exams" || path.startsWith("/exam/");
+  document.getElementById("nav-home").classList.toggle("active", path === "/" || path === "");
+  document.getElementById("nav-exams").classList.toggle("active", inExams);
+  document.getElementById("nav-progress").classList.toggle("active", path === "/progress");
+}
+
+function router() {
+  clearActiveTimer();
+  const path = location.hash.replace(/^#/, "") || "/";
+  const seg = path.split("/").filter(Boolean);
+
+  try {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  } catch (e) {
+    window.scrollTo(0, 0);
+  }
+
+  if (seg.length === 0) renderHome();
+  else if (seg[0] === "subject" && seg[1]) renderSubject(seg[1]);
+  else if (seg[0] === "lesson" && seg[1]) renderLesson(seg[1]);
+  else if (seg[0] === "quiz" && seg[1]) renderQuiz(seg[1]);
+  else if (seg[0] === "progress") renderProgress();
+  else if (seg[0] === "exams") renderExams();
+  else if (seg[0] === "exam" && seg[1]) renderExam(seg[1]);
+  else if (seg[0] === "exam-result" && seg[1]) renderExamResult(seg[1]);
+  else app.innerHTML = notFound();
+
+  updateNav();
+}
+
+window.addEventListener("hashchange", router);
+window.addEventListener("DOMContentLoaded", () => {
+  if (!location.hash) location.hash = "#/";
+  initSakura();
+  router();
+});
+</script>
+</body>
+</html>
